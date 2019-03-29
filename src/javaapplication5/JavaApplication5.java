@@ -5,7 +5,7 @@
  */
 package javaapplication5;
 
-//patata contigo
+//patata contigo, pesaos
 /**
  *
  * @author devna
