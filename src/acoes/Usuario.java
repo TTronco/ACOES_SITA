@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Tarea 1: Modelo E/R y entidades JPA. Sistemas de Informacion para Internet.
+ * @author Grupo 1:
+ *          - Tarun D. 
+            - Salvador C. F.
+            - Iman H. M.
+            - Antonio P. C.
  */
+
 package acoes;
 
 import java.io.Serializable;
@@ -23,13 +26,10 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author imanb
- */
 @Entity
 @Table(name = "USUARIO")
 @XmlRootElement
+/*
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByNumSocio", query = "SELECT u FROM Usuario u WHERE u.numSocio = :numSocio")
@@ -48,6 +48,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findByFechaAlta", query = "SELECT u FROM Usuario u WHERE u.fechaAlta = :fechaAlta")
     , @NamedQuery(name = "Usuario.findByFechaBaja", query = "SELECT u FROM Usuario u WHERE u.fechaBaja = :fechaBaja")
     , @NamedQuery(name = "Usuario.findByObservaciones", query = "SELECT u FROM Usuario u WHERE u.observaciones = :observaciones")})
+*/
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,8 +60,8 @@ public class Usuario implements Serializable {
     @Column(name = "NOMBRE")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "APELLIDOS")
-    private String apellidos;
+    @Column(name = "APELLIDO1")
+    private String apellido1;
     @Basic(optional = false)
     @Column(name = "APELLIDO2")
     private String apellido2;
@@ -112,10 +113,10 @@ public class Usuario implements Serializable {
         this.numSocio = numSocio;
     }
 
-    public Usuario(String numSocio, String nombre, String apellidos, String apellido2, String nif, String direccion, String poblacion, double codPostal, double telefonoMovil, String relacion, Date fechaAlta) {
+    public Usuario(String numSocio, String nombre, String apellido1, String apellido2, String nif, String direccion, String poblacion, double codPostal, double telefonoMovil, String relacion, Date fechaAlta) {
         this.numSocio = numSocio;
         this.nombre = nombre;
-        this.apellidos = apellidos;
+        this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.nif = nif;
         this.direccion = direccion;
@@ -142,12 +143,12 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getApellido1() {
+        return apellido1;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellido1(String apellido1) {
+        this.apellido1 = apellido1;
     }
 
     public String getApellido2() {

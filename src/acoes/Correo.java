@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Tarea 1: Modelo E/R y entidades JPA. Sistemas de Informacion para Internet.
+ * @author Grupo 1:
+ *          - Tarun D. 
+            - Salvador C. F.
+            - Iman H. M.
+            - Antonio P. C.
  */
 package acoes;
 
@@ -17,13 +19,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author imanb
- */
+
 @Entity
 @Table(name = "CORREO")
 @XmlRootElement
+/*
 @NamedQueries({
     @NamedQuery(name = "Correo.findAll", query = "SELECT c FROM Correo c")
     , @NamedQuery(name = "Correo.findByCodigo", query = "SELECT c FROM Correo c WHERE c.codigo = :codigo")
@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Correo.findByModerado", query = "SELECT c FROM Correo c WHERE c.moderado = :moderado")
     , @NamedQuery(name = "Correo.findByNumSocio11", query = "SELECT c FROM Correo c WHERE c.numSocio11 = :numSocio11")
     , @NamedQuery(name = "Correo.findByContenido", query = "SELECT c FROM Correo c WHERE c.contenido = :contenido")})
+*/
 public class Correo implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Tarea 1: Modelo E/R y entidades JPA. Sistemas de Informacion para Internet.
+ * @author Grupo 1:
+ *          - Tarun D. 
+            - Salvador C. F.
+            - Iman H. M.
+            - Antonio P. C.
  */
 package acoes;
 
@@ -24,13 +26,11 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author imanb
- */
+
 @Entity
 @Table(name = "NI\u00d1O")
 @XmlRootElement
+/*
 @NamedQueries({
     @NamedQuery(name = "Ni\u00f1o.findAll", query = "SELECT n FROM Ni\u00f1o n")
     , @NamedQuery(name = "Ni\u00f1o.findByCodigo", query = "SELECT n FROM Ni\u00f1o n WHERE n.codigo = :codigo")
@@ -46,6 +46,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Ni\u00f1o.findByFechaAlta", query = "SELECT n FROM Ni\u00f1o n WHERE n.fechaAlta = :fechaAlta")
     , @NamedQuery(name = "Ni\u00f1o.findByCentro", query = "SELECT n FROM Ni\u00f1o n WHERE n.centro = :centro")
     , @NamedQuery(name = "Ni\u00f1o.findByObservaciones", query = "SELECT n FROM Ni\u00f1o n WHERE n.observaciones = :observaciones")})
+*/
 public class Niño implements Serializable {
 
     private static final long serialVersionUID = 1L;

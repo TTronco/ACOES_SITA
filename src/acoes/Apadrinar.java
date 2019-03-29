@@ -1,8 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Tarea 1: Modelo E/R y entidades JPA. Sistemas de Informacion para Internet.
+ * @author Grupo 1:
+ *          - Tarun D. 
+            - Salvador C. F.
+            - Iman H. M.
+            - Antonio P. C.
  */
+
 package acoes;
 
 import java.io.Serializable;
@@ -17,18 +20,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author imanb
- */
+
 @Entity
 @Table(name = "APADRINAR")
 @XmlRootElement
+/*
 @NamedQueries({
     @NamedQuery(name = "Apadrinar.findAll", query = "SELECT a FROM Apadrinar a")
     , @NamedQuery(name = "Apadrinar.findByNumSocio1", query = "SELECT a FROM Apadrinar a WHERE a.numSocio1 = :numSocio1")
     , @NamedQuery(name = "Apadrinar.findByApadrinarId", query = "SELECT a FROM Apadrinar a WHERE a.apadrinarId = :apadrinarId")
     , @NamedQuery(name = "Apadrinar.findByDonacion", query = "SELECT a FROM Apadrinar a WHERE a.donacion = :donacion")})
+*/
 public class Apadrinar implements Serializable {
 
     private static final long serialVersionUID = 1L;
