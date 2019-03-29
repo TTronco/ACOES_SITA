@@ -10,7 +10,7 @@ package javaapplication5;
  *
  * @author devna
  */
-public class JavaApplication5 {
+public class Main {
 
     /**
      * @param args the command line arguments
