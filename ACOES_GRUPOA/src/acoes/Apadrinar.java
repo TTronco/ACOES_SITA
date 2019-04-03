@@ -10,6 +10,7 @@ package acoes;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,19 +33,20 @@ public class Apadrinar implements Serializable {
     private Long id;
     
     // Cantidad donada por el padrino.
+    @Column(name = "Donacion", nullable = false)
     private double donacion;    
     
     // Fechas para tener el control de cuándo fue apadrinado el niño.
     @Temporal(TemporalType.DATE)
+    @Column(name = "FechaInicio", nullable = false)
     private Date fecha_inicio;
     
     @Temporal(TemporalType.DATE)
     private Date fecha_fin;
      
-   
-    @JoinColumn(name = "niño_codigo",nullable = false)
+    @JoinColumn(name = "alumno_codigo",nullable = false)
     @ManyToOne (optional = false)
-    private Niño niñoCodigo;
+    private Alumno alumnoCodigo;
     
     @JoinColumn(name = "usuario_numSocio", nullable = false)
     @ManyToOne (optional = false)
@@ -55,10 +57,10 @@ public class Apadrinar implements Serializable {
     public Apadrinar() {
     }
 
-    public Apadrinar(double donacion, Date fecha_inicio, Niño niñoCodigo, Usuario usuarioNumSocio) {
+    public Apadrinar(double donacion, Date fecha_inicio, Alumno alumnoCodigo, Usuario usuarioNumSocio) {
         this.donacion = donacion;
         this.fecha_inicio = fecha_inicio;
-        this.niñoCodigo = niñoCodigo;
+        this.alumnoCodigo = alumnoCodigo;
         this.usuarioNumSocio = usuarioNumSocio;
     }
     
@@ -81,12 +83,12 @@ public class Apadrinar implements Serializable {
         this.donacion = donacion;
     }
 
-    public Niño getNiñoCodigo() {
-        return niñoCodigo;
+    public Alumno getAlumnoCodigo() {
+        return alumnoCodigo;
     }
 
-    public void setNiñoCodigo(Niño niñoCodigo) {
-        this.niñoCodigo = niñoCodigo;
+    public void setAlumnoCodigo(Alumno alumnoCodigo) {
+        this.alumnoCodigo = alumnoCodigo;
     }
 
     public Usuario getUsuarioNumSocio() {

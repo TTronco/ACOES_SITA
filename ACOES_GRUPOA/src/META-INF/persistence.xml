@@ -4,18 +4,16 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>acoes.Agente</class>
     <class>acoes.Apadrinar</class>
-    <class>acoes.Niño</class>
+    <class>acoes.Alumno</class>
     <class>acoes.Correo</class>
     <class>acoes.Usuario</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/emergencia2"/>
-      <property name="javax.persistence.jdbc.user" value="emer"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/acoes"/>
+      <property name="javax.persistence.jdbc.user" value="acoes"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.password" value="emer"/>
+      <property name="javax.persistence.jdbc.password" value="acoes"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <property name="javax.persistence.schema-generation.scripts.create-target" value="C:\Users\imanb\OneDrive\Documentos\NetBeansProjects\Emergencia2\create.sql"/>
-      <property name="javax.persistence.schema-generation.scripts.create-target" value="C:\Users\imanb\OneDrive\Documentos\NetBeansProjects\Emergencia2\create.dll"/>
-      <property name="javax.persistence.schema-generation.scripts.create-target" value="C:\Users\imanb\OneDrive\Documentos\NetBeansProjects\Emergencia2\create.dml"/>
+
     </properties>
   </persistence-unit>
 </persistence>

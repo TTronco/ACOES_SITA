@@ -21,7 +21,7 @@ public class Agente extends Usuario {
 
     private static final long serialVersionUID = 1L;
     private String idCentro;
-    private List<Niño> niñoList;
+    private List<Alumno> alumnoList;
     
     
     //Constructors
@@ -29,8 +29,8 @@ public class Agente extends Usuario {
     public Agente() {
     }
 
-    public Agente(List<Niño> niñoList) {
-        this.niñoList = niñoList;
+    public Agente(List<Alumno> alumnoList) {
+        this.alumnoList = alumnoList;
     }
         
     // Getters & setters  
@@ -43,12 +43,12 @@ public class Agente extends Usuario {
         this.idCentro = idCentro;
     }
 
-    public List<Niño> getNiñoList() {
-        return niñoList;
+    public List<Alumno> getAlumnoList() {
+        return alumnoList;
     }
 
-    public void setNiñoList(List<Niño> niñoList) {
-        this.niñoList = niñoList;
+    public void setAlumnoList(List<Alumno> alumnoList) {
+        this.alumnoList = alumnoList;
     }
     
     

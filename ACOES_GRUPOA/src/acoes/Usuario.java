@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,30 +33,37 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer numSocio;    
     
+    @Column(name = "Nombre", nullable = false)
     private String nombre;
  
-    private String apellido1;
-  
-    private String apellido2;
+    @Column(name = "Apellido", nullable = false)
+    private String apellido;
 
     private String estado;
   
+    @Column(name = "NIF", nullable = false)
     private String nif;
 
+    @Column(name = "Direccion", nullable = false)
     private String direccion;
 
+    @Column(name = "Poblacion", nullable = false)
     private String poblacion;
 
+    @Column(name = "CodPostal", nullable = false)
     private double codPostal;
 
     private Double telefonoFijo;
     
+    @Column(name = "TlfMovil", nullable = false)
     private double telefonoMovil;
 
+    @Column(name = "Relacion", nullable = false)
     private String relacion;
 
     private Character certificado;
 
+    @Column(name = "FechaAlta", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaAlta;
   
@@ -73,16 +81,10 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido1, String apellido2) {
+    public Usuario(String nombre, String apellido) {
         this.nombre = nombre;
-        this.apellido1 = apellido1;
-        this.apellido2 = apellido2;
+        this.apellido = apellido;
     }
-    
-    
-    
-    
-    
     
     public String getNombre() {
         return nombre;
@@ -92,20 +94,12 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApellido1() {
-        return apellido1;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1;
-    }
-
-    public String getApellido2() {
-        return apellido2;
-    }
-
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getEstado() {

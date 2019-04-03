@@ -9,6 +9,7 @@
 package acoes;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,17 +24,20 @@ public class Correo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codigo;   
     
+    @Column(name = "Tipo", nullable = false)
     private String tipo;
     
+    @Column(name = "Moderado", nullable = false)
     private boolean moderado;
     
+    @Column(name = "Contenido", nullable = false)
     private String contenido;
     
     @ManyToOne
     private Usuario user;
     
     @ManyToOne
-    private Niño nene;
+    private Alumno alumno;
 
     
     //Constructors
@@ -89,12 +93,12 @@ public class Correo implements Serializable {
         this.user = user;
     }
 
-    public Niño getNene() {
-        return nene;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public void setNene(Niño nene) {
-        this.nene = nene;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
     

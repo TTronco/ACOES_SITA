@@ -8,8 +8,9 @@
 
 package acoes_sita;
 
-
-import acoes.Apadrinar;
+import acoes.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -24,9 +25,8 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("DBP"); //En este momento se crea el esquema en la base de datos.
 	EntityManager em = emf.createEntityManager();
 	EntityTransaction ts = em.getTransaction();
-        
+      
         /*
-        
         // Creamos un usuario normal y corriente.
         Usuario us = new Usuario("Patata", "García", "Pérez");
         
@@ -34,7 +34,7 @@ public class Main {
         Agente ag = new Agente();
         
         // Creamos un niño.
-        Niño n = new Niño("Tubérculo", "Remolacha", "Sánchez");
+        Alumno n = new Alumno("Tubérculo", "Remolacha", "Sánchez");
         
         
         // Hacemos que el usuario anterior apadrine al niño.
@@ -48,9 +48,11 @@ public class Main {
         
         */
         
+        
         ts.begin();
         
         // Comprobamos el funcionamiento al insertar datos.
+        
         /*
         em.persist(us);
         em.persist(ag);
@@ -65,6 +67,7 @@ public class Main {
         ap1.setFecha_fin(end);        
         em.merge(ap1);
         */
+        
         
         ts.commit();
                      

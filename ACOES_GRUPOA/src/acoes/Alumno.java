@@ -22,64 +22,64 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author imanb
- */
+
 @Entity
-public class Niño implements Serializable {
+public class Alumno implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-     Integer codigo;
+    private Integer codigo;
     
+    @Column(name = "Nombre", nullable = false)
     private String nombre;
     
+    @Column(name = "Apellidos", nullable = false)
     private String apellidos;
     
-    private String apellido2;
-   
     private String estado;
    
+    @Column(name = "Beca", nullable = false)
     private Character beca;
     
+    @Column(name = "Sexo", nullable = false)
     private String sexo;
     
     private String foto;
    
     @Temporal(TemporalType.DATE)
+    @Column(name = "FechaNacimiento", nullable = false)
     private Date fechaNacimiento;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "FechaEntrada", nullable = false)
     private Date fechaEntrada;
    
     @Temporal(TemporalType.DATE)
     private Date fechaAlta;
    
+    @Column(name = "Centro", nullable = false)
     private String centro;
     
     private String observaciones;
     
-    @OneToMany(mappedBy = "nene")
+    @OneToMany(mappedBy = "alumno")
     private List<Correo> correoList;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "niñoCodigo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumnoCodigo")
     private List<Apadrinar> apadrinarList;
 
     //Constructors
 
-    public Niño() {
+    public Alumno() {
     }
 
-    public Niño(String nombre, String apellidos, String apellido2) {
+    public Alumno(String nombre, String apellidos) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.apellido2 = apellido2;
     }
     
-    
-    
+       
     // Getters & setters  
     
     
@@ -105,14 +105,6 @@ public class Niño implements Serializable {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
-    }
-
-    public String getApellido2() {
-        return apellido2;
-    }
-
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
     }
 
     public String getEstado() {
@@ -202,12 +194,7 @@ public class Niño implements Serializable {
     public void setApadrinarList(List<Apadrinar> apadrinarList) {
         this.apadrinarList = apadrinarList;
     }
-    
-    
-    
-    
-    
-    
+        
     @Override
     public int hashCode() {
         int hash = 0;
@@ -218,10 +205,10 @@ public class Niño implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Niño)) {
+        if (!(object instanceof Alumno)) {
             return false;
         }
-        Niño other = (Niño) object;
+        Alumno other = (Alumno) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -231,7 +218,7 @@ public class Niño implements Serializable {
     
     @Override
     public String toString() {
-        return "entities.Niño[ codigo=" + codigo + " ]";
+        return "entities.Alumno[ codigo=" + codigo + " ]";
     }
     
 }
