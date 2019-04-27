@@ -27,43 +27,43 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer numSocio;    
+    protected Integer numSocio;    
     
-    private String nombre;
+    protected String nombre;
  
-    private String apellido1;
+    protected String apellido1;
   
-    private String apellido2;
+    protected String apellido2;
 
-    private String estado;
+    protected String estado;
   
-    private String nif;
+    protected String nif;
 
-    private String direccion;
+    protected String direccion;
 
-    private String poblacion;
+    protected String poblacion;
 
-    private double codPostal;
+    protected double codPostal;
 
-    private Double telefonoFijo;
+    protected Double telefonoFijo;
     
-    private double telefonoMovil;
+    protected double telefonoMovil;
 
-    private String relacion;
+    protected String relacion;
 
-    private Character certificado;
+    protected Character certificado;
 
     @Temporal(TemporalType.DATE)
-    private Date fechaAlta;
+    protected Date fechaAlta;
   
     @Temporal(TemporalType.DATE)
-    private Date fechaBaja;
+    protected Date fechaBaja;
     
-    private String observaciones;
+    protected String observaciones;
     
     /* LOGIN */
-    private String usuario;
-    private String contrasenia;
+    protected String usuario;
+    protected String contrasenia;
     
     @OneToMany(mappedBy = "user")
     private List<Correo> correoList;
@@ -73,7 +73,11 @@ public class Usuario implements Serializable {
 
     public Usuario() {
     }
-
+    
+    public Usuario(String usuario, String contrasenia) {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;        
+    }
     public Usuario(String nombre, String apellido1, String apellido2) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
