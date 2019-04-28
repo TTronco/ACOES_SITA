@@ -1,70 +1,92 @@
- 
-   
-     
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/WEB-INF/templates/menu.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     
+    
     <ui:define name="titulo">
-        Apadrinar
+        Apadrina
     </ui:define>   
     
     <ui:define name="contenido">
-       
         
+         <SCRIPT languaje="JavaScript">
+                
+    function pulsar() {
+        alert("Solictud enviada");            
+    }   
+    
+    
+    
+        </SCRIPT>
+            
+        <html>
         Formulario de apadrinar. Meter dats en la bd.
-<SCRIPT languaje="JavaScript">
-function pulsar() {
-    
-    alert("Solictud enviada");
-}   
-</SCRIPT>
         
-      <!-- <input type="submit" value="Enviar Solicitud">  </input> -->
+        <h:head>
+            
+            <title> Apadrinar </title>
+            <!-- Podriamos usar css -->
+    
+        </h:head>
+        
+        
+        <h:body>
+            
+            <div>
+                <h:form>
+                    <h1 align="center"> </h1>
+                    <div align="right"> </div>
+                </h:form>
+            </div>
+            
+            <div class="contenido_apadrina"> </div>  
+            
+             <div class="userypassword">
+                 <h:form>
+                     <p align="center"> <em>Usuario: </em> <input id="usuario" class="inpunttext" type="usuario" name="usuario"> </input></p>      
+                     <p align="center" > <em>Contraseña: </em><input type="password" class="inputtext" name="pass" id="pass" data-testid="royal_pass">  </input> </p>
+                 </h:form>
+             </div>
+         
+                 <div class="FormularioApadrinar">
+                                       
+                     
+                     <form method="get" action="http://localhost:8080/ACOES_T2/faces/apadrina.xhtml">
+                 
+                       
+                         <input class="FormularioApadrinar" type="submit" value="Enviar peticion" onclick="pulsar()" /> 
+     
+  <!--  <h:commandButton class="FormularioApadrinar" type="submit" value="Enviar Peticion" action="#{login.autenticar()}" onclick="pulsar()" />  -->
+                             
+                     </form>
+                 
+                 </div>
+                 
+                 <div class="BotonAceptarCondiciones" >
              
-     <!-- EL PROBLEMA ES QUIZAS LA DIRECCION PORQUE YO HE PUESTO QUE UNA VEZ ENVIADA LA SOLICITUD VUELVA A LA PAGINA -->
-<html>
-    <head>
-    <title>Ejemplo del uso de formularios - aprenderaprogramar.com</title>
-</head>
-
-<body>
-    
-    <div class="FormularioApadrinar">
-       
+                     <form >
+                         
+                         <input type="checkbox" name="condiciones"/> Acepto las condiciones<br/>
+                          
+                     </form>
+   
+                 </div>
+            
+        </h:body>
         
-    <form method="get" action="http://localhost:8080/ACOES_T2/faces/apadrina.xhtml">
-
-      
-      <input class="FormularioApadrinar" type="submit" value="Enviar peticion" onclick="pulsar()" /> 
-      <!--  <h:commandButton class="FormularioApadrinar" type="submit" value="Enviar Peticion" action="#{login.autenticar()}" onclick="pulsar()" />  -->
-    
-
-    </form>
-
-    </div>
-    
-     <dl> </dl>
-     
-     <div class="BotonAceptarCondiciones" >
-     <form >
-         <input type="checkbox" name="condiciones"/> Acepto las condiciones<br/>
-     </form>
-     </div>
-     
-     
-    
-     
-</body>
-
-</html>
+    </html>
         
-     <h:form> 
-     <h:commandLink action="EditarPerfil.xhtml" value="Editar Perfil"> </h:commandLink>
-     </h:form>
-     
+    <h:form> 
+   
+         <h:commandLink action="EditarPerfil.xhtml" value="Editar Perfil"> </h:commandLink>
+    
+     </h:form> 
+        
+    
+    
     </ui:define>
 
 </ui:composition>
