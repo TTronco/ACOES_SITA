@@ -8,8 +8,10 @@ and open the template in the editor.
     Author     : imanb
 */
 
+
 body{
     background: #c9f5e5;
+    
 }
 
 .titulo{
@@ -29,11 +31,10 @@ body{
     border-top: 0.1em solid black; 
 }
 
-#menu li {
-   
+#menu li {  
     text-align: center;    
     display: inline-block;    
-    width: calc(100% / 7); /* añade esto, se divide por 6 porque hay 6 elementos */
+    width: calc(115% / 7); /* añade esto, se divide por 6 porque hay 6 elementos */
 }
 
 #menu li a:link{
@@ -43,17 +44,90 @@ body{
     text-decoration: none;
 }
 .contenido{
-    padding-top: 7em;
+    padding-top: 0em;
     position:relative;
     font-family: arial, verdana;
+    height: 200px;
+    width: 100%;
 }
 
+.contenido_inicio{
+    padding-top: 2em;
+    position:relative;
+    font-family: arial, verdana;
+    height: 200px;
+    width: 100%;
+    background-color: deepskyblue;
+}
+/*
+ <!--Estas deben ir en otro css, para no retocar todos los otros xhtml-->
+ 
+*/
+ 
+.a{
+    font-size: 40px;
+    padding-left: 22%;
 
-#footer {
-   position:fixed;
-   left:0px;
+}
+
+.c{
+    font-size: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.b{
+    float: right;
+    padding-right: 30%;
+}
+
+.d{
+    float:left;
+    padding-left: 10%;
+    margin-right: 15px;
+    margin-bottom: 25px;
+}
+
+.otro_contenido{
+    overflow: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    background:#47c9af;
+}
+
+.apadrina_un_nino{
+    background: url(ninos.jpg);
+    border: 0.5px solid black;
+    margin-bottom: 2em;
+}
+
+.g{
+    background: white;
+    opacity: 0.65;
+}
+
+.h{
+    font-size: 50px;
+    margin:5%;
+    margin-left: 35%;
+    font-weight: bold;
+    color: black;
+    text-align: match-parent;
+}
+
+.i{
+    font-size: 30px;
+    text-align: center;
+}
+.area{
+    margin-top: 2%;
+    width: 1300px;
+    height: 300px;
+}
+
+.footer {
    bottom:0px;
-   height:30px;
+   height:40px;
    width:100%;
    background:#47c9af;
    text-align: center;
