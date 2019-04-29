@@ -4,16 +4,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 26-abr-2019, 17:47:38
-    Author     : imanb
-*/
-
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
     Created on : 15-abr-2019, 18:24:20
     Author     : imanb
 */
@@ -32,26 +22,25 @@ body{
     
     margin: 0;
     padding: 0;
-    position: absolute;
+    position: relative;
     width: 100%;
     background: white;
     border-bottom:0.1em solid black; 
     border-top: 0.1em solid black; 
 }
 
-#menu li {  
-    text-align: center;  
-    
+#menu li {
+   
+    text-align: center;    
     display: inline-block;    
     width: calc(100% / 8); /* añade esto, se divide por 6 porque hay 6 elementos */
 }
 
 #menu li a:link{
-    font-size: 30px;
+    font-size: 32px;
     color: darkblue;
     font-weight : bold;
     text-decoration: none;
-    
 }
 .contenido{
     padding-top: 7em;

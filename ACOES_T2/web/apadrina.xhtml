@@ -1,18 +1,82 @@
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/WEB-INF/templates/menu.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <ui:define name="titulo">
-        Apadrina
+        Apadrinar
     </ui:define>   
     
     <ui:define name="contenido">
-       
-            
-        
+              
         Formulario de apadrinar. Meter dats en la bd.
         
+    </ui:define>
+   
+
+
         
+        
+        
+        
+        
+        <h:body>
+            
+            <div>
+                <h:form>
+                    <h1 align="center"> </h1>
+                    <div align="right"> </div>
+                </h:form>
+            </div>
+            
+            <div class="contenido_apadrina"> </div>  
+            
+             <div class="userypassword">
+                 <h:form>
+                     <p align="center"> <em>Usuario: </em> <input id="usuario" class="inpunttext" type="usuario" name="usuario"> </input></p>      
+                     <p align="center" > <em>Contraseña: </em><input type="password" class="inputtext" name="pass" id="pass" data-testid="royal_pass">  </input> </p>
+                 </h:form>
+             </div>
+         
+                 <div class="FormularioApadrinar">
+                                       
+                     
+                     <form method="get" action="http://localhost:8080/ACOES_T2/faces/apadrina.xhtml">
+                 
+                       
+                         <input class="FormularioApadrinar" type="submit" value="Enviar peticion" onclick="pulsar()" /> 
+     
+  <!--  <h:commandButton class="FormularioApadrinar" type="submit" value="Enviar Peticion" action="#{login.autenticar()}" onclick="pulsar()" />  -->
+                             
+                     </form>
+                 
+                 </div>
+                 
+                 <div class="BotonAceptarCondiciones" >
+             
+                     <form >
+                         
+                         <input type="checkbox" name="condiciones"/> Acepto las condiciones<br/>
+                          
+                     </form>
+   
+                 </div>
+            
+        </h:body>
+        
+    </html>
+        
+    <h:form> 
+   
+         <h:commandLink action="EditarPerfil.xhtml" value="Editar Perfil"> </h:commandLink>
+    
+     </h:form> 
+        
+    
+    
     </ui:define>
 
 </ui:composition>

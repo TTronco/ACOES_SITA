@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="C:\Users\imanb\OneDrive\Documentos\NetBeansProjects\ACOES_T2\web\resources\style_ag.css" rel="stylesheet" type="text/css" />
+        <link href="resources\main_style.css" rel="stylesheet" type="text/css" />
         <title>
             <ui:insert name="titulo">
                 ACOES
@@ -30,7 +30,8 @@
                         <li><h:commandLink action="moderar.xhtml" value="Moderar"/></li>   
                         <li><h:commandLink action="enviar_cont.xhtml" value="Enviar contenedor"/></li>  
                         <li><h:commandLink action="contacto.xhtml" value="Contacto"/></li> 
-                        <li><h:commandLink action="login.xhtml" value="Mi Usuario"/></li>   
+                        <li><h:commandLink action="modif_ag.xhtml" value="Mi Usuario"/></li>   
+                        <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Logout"/></li>   
                     </ul> 
                 </h:form>
         </div>

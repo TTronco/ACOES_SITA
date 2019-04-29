@@ -4,6 +4,7 @@
  */
 package autenticacion;
 
+import java.io.*;
 import Modelo.Usuario;
 import Modelo.Agente;
 import java.util.ArrayList;
@@ -94,9 +95,10 @@ public class Login {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario " + usuario + " introducido no existe", "El usuario " + usuario + "  introducido no existe"));
         }else{
             // 2. Comprobar que la contraseña es correcta.
+            
             if(agente){
                 if(ok && ag.getContrasenia().equals(contrasenia)){
-                    ctrl.setUsuario(ag);
+                    ctrl.setAgente(ag);
                     ctrl.setAg(true);
                     return ctrl.home();
                 }else{            

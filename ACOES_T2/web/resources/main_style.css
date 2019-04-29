@@ -33,11 +33,11 @@ body{
    
     text-align: center;    
     display: inline-block;    
-    width: calc(100% / 7); /* añade esto, se divide por 6 porque hay 6 elementos */
+    width: calc(100% / 9); /* añade esto, se divide por 6 porque hay 6 elementos */
 }
 
 #menu li a:link{
-    font-size: 38px;
+    font-size: 30px;
     color: darkblue;
     font-weight : bold;
     text-decoration: none;

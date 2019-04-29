@@ -22,7 +22,7 @@ public class ControlAutorizacion implements Serializable {
     private Usuario usuario;
     private Agente agente;
     
-    private boolean ag;
+    private boolean ag = false;
 
     public boolean isAg() {
         return ag;
@@ -65,6 +65,9 @@ public class ControlAutorizacion implements Serializable {
         return page;
     }
     
+    
+    
+ 
     public String logout()
     {
         // Destruye la sesión (y con ello, el ámbito de este bean)
