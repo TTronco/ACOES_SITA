@@ -44,7 +44,7 @@ public class ControlAutorizacion implements Serializable {
         this.agente = agente;
     }
 
-    public Usuario getAgente() {
+    public Agente getAgente() {
         return agente;
     }
 

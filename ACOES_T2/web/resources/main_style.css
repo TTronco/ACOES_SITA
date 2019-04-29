@@ -60,3 +60,31 @@ body{
    color: grey;
    
 }
+
+/*Apadrinar*/
+.FormularioApadrinar{
+    
+    padding-left: 40%;
+    padding-right: 40%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    font-size: 15px;
+}
+
+.BotonAceptarCondiciones{
+    padding-left: 40%;
+    padding-right: 40%;
+    font-style: italic;
+    font-size: 10px;
+}
+
+.userypassword{
+     padding-left: 40%;
+     padding-right: 40%;
+     padding-bottom: 1%;
+     padding-top: 1%;
+     font-size: 20px;
+}
+
+
+
