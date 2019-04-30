@@ -8,10 +8,8 @@ and open the template in the editor.
     Author     : imanb
 */
 
-
 body{
     background: #c9f5e5;
-    
 }
 
 .titulo{
@@ -34,7 +32,7 @@ body{
 #menu li {  
     text-align: center;    
     display: inline-block;    
-    width: calc(115% / 7); /* añade esto, se divide por 6 porque hay 6 elementos */
+    width: calc(145% / 9); /* añade esto, se divide por 6 porque hay 6 elementos */
 }
 
 #menu li a:link{
@@ -125,12 +123,14 @@ body{
     height: 300px;
 }
 
-.footer {
+#footer{
+   position:fixed;
+   left:0px;
    bottom:0px;
-   height:40px;
+   height:35px;
    width:100%;
    background:#47c9af;
    text-align: center;
    color: grey;
-   
 }
+

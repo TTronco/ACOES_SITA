@@ -21,6 +21,16 @@ public class ControlAutorizacion implements Serializable {
 
     private Usuario usuario;
     private Agente agente;
+    
+    private boolean ag = false;
+
+    public boolean isAg() {
+        return ag;
+    }
+
+    public void setAg(boolean ag) {
+        this.ag = ag;
+    }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
@@ -46,15 +56,18 @@ public class ControlAutorizacion implements Serializable {
         // Si el usuario es un usuario normal debe devolver la página normal.xhtml
         
         String page = "login.xhtml";
-        if(usuario != null){
+        if(usuario != null && !ag){
             page = "socio.xhtml";
-        }else if(agente != null){            
-            page = "agente.xhtml";
+        }else if(agente != null && ag){            
+            page = "Agente.xhtml";
         }
         
         return page;
     }
     
+    
+    
+ 
     public String logout()
     {
         // Destruye la sesión (y con ello, el ámbito de este bean)

@@ -16,7 +16,7 @@
             
         
         <c:choose>
-            <c:when test="#{empty controlAutorizacion.usuario}">
+            <c:when test="#{empty controlAutorizacion.usuario or empty controlAutorizacion.agente}">
                 <h:form id="login">
                     <table>
                         <tr>
@@ -33,6 +33,10 @@
                             </td>
                         </tr>
                     </table>
+                    
+                    <div>
+                        ¿No tienes cuenta? -> <h:link outcome="registro.xhtml" value="¡Regístrate!"/>
+                    </div>
                 </h:form>
             </c:when>
             <c:otherwise>
@@ -41,9 +45,7 @@
         </c:choose>
         <h:messages/>
         
-        <div>
-            ¿No tienes cuenta? -> <h:link outcome="registro.xhtml" value="¡Regístrate!"/>
-        </div>
+        
         
     </ui:define>
         
