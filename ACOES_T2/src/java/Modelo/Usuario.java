@@ -31,9 +31,7 @@ public class Usuario implements Serializable {
     
     protected String nombre;
  
-    protected String apellido1;
-  
-    protected String apellido2;
+    protected String apellidos;
 
     protected String estado;
   
@@ -43,11 +41,11 @@ public class Usuario implements Serializable {
 
     protected String poblacion;
 
-    protected Integer codPostal; //cambio double -> integer
+    protected String codPostal; //cambio double -> integer
 
-    protected Integer telefonoFijo; //cambio double -> integer
+    protected String telefonoFijo; //cambio double -> integer
     
-    protected Integer telefonoMovil; //cambio double -> integer
+    protected String telefonoMovil; //cambio double -> integer
 
     protected String relacion;
 
@@ -78,16 +76,16 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
         this.contrasenia = contrasenia;        
     }
-    public Usuario(String nombre, String apellido1, String apellido2) {
+    
+    public Usuario(String nombre, String apellidos, String nif) {
         this.nombre = nombre;
-        this.apellido1 = apellido1;
-        this.apellido2 = apellido2;
+        this.apellidos = apellidos;
+        this.nif = nif;
     }
 
-    public Usuario(String nombre, String apellido1, String apellido2, String nif, String direccion, String poblacion, Integer codPostal, Integer telefonoMovil, String usuario, String contrasenia) {
+    public Usuario(String nombre, String apellidos, String nif, String direccion, String poblacion, String codPostal, String telefonoMovil, String usuario, String contrasenia) {
         this.nombre = nombre;
-        this.apellido1 = apellido1;
-        this.apellido2 = apellido2;
+        this.apellidos = apellidos;
         this.nif = nif;
         this.direccion = direccion;
         this.poblacion = poblacion;
@@ -110,20 +108,12 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApellido1() {
-        return apellido1;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1;
-    }
-
-    public String getApellido2() {
-        return apellido2;
-    }
-
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getEstado() {
@@ -158,23 +148,23 @@ public class Usuario implements Serializable {
         this.poblacion = poblacion;
     }
 
-    public double getCodPostal() {
+    public String getCodPostal() {
         return codPostal;
     }
 
-    public void setCodPostal(Integer codPostal) {
+    public void setCodPostal(String codPostal) {
         this.codPostal = codPostal;
     }
 
-    public Integer getTelefonoFijo() {
+    public String getTelefonoFijo() {
         return telefonoFijo;
     }
 
-    public void setTelefonoFijo(Integer telefonoFijo) {
+    public void setTelefonoFijo(String telefonoFijo) {
         this.telefonoFijo = telefonoFijo;
     }
 
-    public Integer getTelefonoMovil() {
+    public String getTelefonoMovil() {
         return telefonoMovil;
     }
 
@@ -185,8 +175,7 @@ public class Usuario implements Serializable {
     public void setNumSocio(Integer numSocio) {
         this.numSocio = numSocio;
     }
-
-    public void setTelefonoMovil(Integer telefonoMovil) {
+    public void setTelefonoMovil(String telefonoMovil) {
         this.telefonoMovil = telefonoMovil;
     }
 

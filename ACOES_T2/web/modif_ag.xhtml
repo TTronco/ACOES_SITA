@@ -1,20 +1,272 @@
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/WEB-INF/templates/menu_agente.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/menu.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
     
     <ui:define name="titulo">
-        Bienvenido
+        Editar Perfil
     </ui:define>   
     
     <ui:define name="contenido">
-       
-        ETC    
-        ACTUALIZAR DATOS
-        ELIMINAR CUENTA
-                            
+       <c:choose>
+            <c:when test="#{!empty controlAutorizacion.agente}">
+                 <div class="EditarPerfilEstilo">    
+                    <div style="alignment-adjust: auto">  
+
+                   <h:form id="reg">
+
+                       <table style="right:100%">
+                           <tr>
+                               <td>Nombre Anterior: </td>
+                               <td><h:outputFormat value="#{controlAutorizacion.nombre}"/></td>
+                               <tr>
+                                   <td>Nombre: </td>
+                               <td><h:inputText value="#{EditarPerfil.agente.nombre}"/></td>
+                               </tr>
+
+                           </tr>
+                           <tr>
+
+                               <td>Apellidos Anteriores: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.apellidos}"/></td>
+                               <tr>
+                                   <td>Apellidos: </td>
+                                   <td><h:inputText value="#{EditarPerfil.agente.apellidos}"/></td>
+                               </tr>
+
+                           </tr>
+
+                           <tr>
+                               <td>Nif Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.nif}"/></td>
+                               <tr>
+                                   <td>Nif: </td>
+                                   <td><h:inputText value="#{EditarPerfil.agente.nif}"/></td>
+                               </tr>
+                           </tr>
+                           <tr>
+                               <td>Dirección Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.direccion}"/></td>
+                               <tr>
+                                   <td>Dirección: </td>
+                                   <td><h:inputText value="#{EditarPerfil.agente.direccion}"/></td>    
+                               </tr>
+                           </tr>
+                           <tr>
+                               <td>Población Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.poblacion}"/></td>
+                               <tr>
+                                   <td>Población: </td>
+                                   <td><h:inputText value="#{EditarPerfil.agente.poblacion}"/></td>
+                               </tr>
+                           </tr>
+                           <tr>
+                               <td>Codigo Postal Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.codigoPostal}"/></td>
+                               <tr>
+                                   <td>Código Postal: </td>
+                                   <td><h:inputText value="#{EditarPerfil.agente.codPostal}"/></td>
+                               </tr>
+                           </tr>
+
+                           <tr>
+                               <td>Teléfono Movil Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.telefonoMovil}"/></td>
+                               <tr>
+                                   <td>Teléfono Móvil: </td>
+                                   <td><h:inputText value="#{EditarPerfil.agente.telefonoMovil}"/></td>
+                               </tr>
+                           </tr>
+
+                           <tr>
+                               
+
+                               <td>Teléfono Fijo: </td>
+                               <td><h:inputText value="#{EditarPerfil.agente.telefonoFijo}"/></td>
+
+                           </tr>
+                           
+                           <tr>
+                               <td>Codigo centro anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.idCentro}"/></td>
+                               <tr>
+                                   <td>Centro: </td>
+                                   <td><h:inputText value="#{EditarPerfil.agente.idCentro}"/></td>
+                               </tr>
+                           
+                           </tr>
+                           
+                           <tr>
+                               <td>Nombre Usuario Anterior: </td>
+                               <td><h:outputFormat value="#{controlAutorizacion.usuarioNombre}"/></td>
+                               <tr>
+                                   <td>Nombre Usuario: </td>
+                               <td><h:inputText value="#{EditarPerfil.agente.usuario}"/></td>
+                               </tr>
+
+                           </tr>
+                           <tr>
+                               <td>Contraseña Anterior: </td>
+                               <td><h:inputSecret value="#{EditarPerfil.anterior}"/></td>
+                               <td>Contraseña: </td>
+                               <td><h:inputSecret value="#{EditarPerfil.agente.contrasenia}"/></td>
+                               <td>Confirmar Nueva Contraseña</td>
+                               <td><h:inputSecret value="#{EditarPerfil.repass}"/></td>
+                           </tr>
+
+
+                            </table>
+                       <br/>
+                       <tr>
+                              <td colspan="2">
+                                  <center>
+                                      <h:commandButton id="ed" value="Editar Perfil" action="#{EditarPerfil.EditarPerfil}" style="font-size: 20px"/>
+                                      <h:message for="ed" class="error_editarperfil"/>
+                                  </center>
+                               </td>
+                           </tr>
+                   </h:form>
+
+
+               </div>     
+
+                   </div> 
+
+            </c:when>
+           
+            <c:when test="#{!empty controlAutorizacion.usuario }">
+
+              <!--SOCIO-->
+              
+                    <div class="EditarPerfilEstilo">    
+                    <div style="alignment-adjust: auto">  
+
+                   <h:form id="reg">
+
+                       <table style="right:100%">
+                           <tr>
+                               <td>Nombre Anterior: </td>
+                               <td><h:outputFormat value="#{controlAutorizacion.nombre}"/></td>
+                               <tr>
+                                   <td>Nombre: </td>
+                               <td><h:inputText value="#{EditarPerfil.user.nombre}"/></td>
+                               </tr>
+
+                           </tr>
+                           <tr>
+
+                               <td>Apellidos Anteriores: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.apellidos}"/></td>
+                               <tr>
+                                   <td>Apellidos: </td>
+                                   <td><h:inputText value="#{EditarPerfil.user.apellidos}"/></td>
+                               </tr>
+
+                           </tr>
+                           
+
+                           <tr>
+                               <td>Nif Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.nif}"/></td>
+                               <tr>
+                                   <td>Nif: </td>
+                                   <td><h:inputText value="#{EditarPerfil.user.nif}"/></td>
+                               </tr>
+                           </tr>
+                           <tr>
+                               <td>Dirección Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.direccion}"/></td>
+                               <tr>
+                                   <td>Dirección: </td>
+                                   <td><h:inputText value="#{EditarPerfil.user.direccion}"/></td>    
+                               </tr>
+                           </tr>
+                           <tr>
+                               <td>Población Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.poblacion}"/></td>
+                               <tr>
+                                   <td>Población: </td>
+                                   <td><h:inputText value="#{EditarPerfil.user.poblacion}"/></td>
+                               </tr>
+                           </tr>
+                           <tr>
+                               <td>Codigo Postal Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.codigoPostal}"/></td>
+                               <tr>
+                                   <td>Código Postal: </td>
+                                   <td><h:inputText value="#{EditarPerfil.user.codPostal}"/></td>
+                               </tr>
+                           </tr>
+
+                           <tr>
+                               <td>Teléfono Movil Anterior: </td>
+                               <td><h:outputLabel value="#{controlAutorizacion.telefonoMovil}"/></td>
+                               <tr>
+                                   <td>Teléfono Móvil: </td>
+                                   <td><h:inputText value="#{EditarPerfil.user.telefonoMovil}"/></td>
+                               </tr>
+                           </tr>
+
+                           <tr>
+
+                               <td>Teléfono Fijo: </td>
+                               <td><h:inputText value="#{EditarPerfil.user.telefonoFijo}"/></td>
+
+                           </tr>
+
+                           <tr>
+                               <td>Nombre Usuario Anterior: </td>
+                               <td><h:outputFormat value="#{controlAutorizacion.usuarioNombre}"/></td>
+                               <tr>
+                                   <td>Nombre Usuario: </td>
+                               <td><h:inputText value="#{EditarPerfil.user.usuario}"/></td>
+                               </tr>
+
+                           </tr>
+                           <tr>
+                               <td>Contraseña Anterior: </td>
+                               <td><h:inputSecret value="#{EditarPerfil.anterior}"/></td>
+                               <td>Contraseña: </td>
+                               <td><h:inputSecret value="#{EditarPerfil.user.contrasenia}"/></td>
+                               <td>Confirmar Nueva Contraseña</td>
+                               <td><h:inputSecret value="#{EditarPerfil.repass}"/></td>
+                           </tr>
+
+
+                            </table>
+                       <br/>
+                       <tr>
+                              <td colspan="2">
+                                  <center>
+                                      <h:commandButton id="ed" value="Editar Perfil" action="#{EditarPerfil.EditarPerfil}" style="font-size: 20px"/>
+                                      <h:message for="ed" class="error_editarperfil"/>
+                                  </center>
+                               </td>
+                           </tr>
+                   </h:form>
+
+
+               </div>     
+
+                   </div>
+              
+
+                   </c:when>   
+           <c:otherwise>
+               Acceso no autorizado.
+           </c:otherwise>
+              
+            </c:choose> 
         
+     
+   
+  
         
     </ui:define>
 
 </ui:composition>
-

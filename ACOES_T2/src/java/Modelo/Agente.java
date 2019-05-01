@@ -25,7 +25,9 @@ public class Agente extends Usuario {
     
     
     //Constructors
-
+    public Agente(){
+        
+    }
     public Agente(String usuario, String contrasenia) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;        
