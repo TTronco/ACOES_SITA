@@ -17,19 +17,53 @@
         
         formulario registro.
         
-        <h:form id="login">
+        <h:form id="reg">
             <table>
                 <tr>
-                    <td>Usuario: </td>
-                    <td><h:inputText value="#{login.usuario}"/></td>
+                    <td>Nombre: </td>
+                    <td><h:inputText value="#{registro.nombre}"/></td>
+                </tr>
+                <tr>
+                    <td> Primer apellido: </td>
+                    <td><h:inputText value="#{registro.apellido1}"/></td>
+                </tr>
+                <tr>
+                    <td> Segundo apellido: </td>
+                    <td><h:inputText value="#{registro.apellido2}"/></td>
+                </tr>
+                <tr>
+                    <td>Nif: </td>
+                    <td><h:inputText value="#{registro.nif}"/></td>
+                </tr>
+                <tr>
+                    <td>Dirección: </td>
+                    <td><h:inputText value="#{registro.direccion}"/></td>
+                </tr>
+                <tr>
+                    <td>Población: </td>
+                    <td><h:inputText value="#{registro.poblacion}"/></td>
+                </tr>
+                
+                <tr>
+                    <td>Código Postal: </td>
+                    <td><h:inputText value="#{registro.codPostal}"/></td>
+                </tr>
+                <tr>
+                    <td>Teléfono Móvil: </td>
+                    <td><h:inputText value="#{registro.telefonoMovil}"/></td>
+                </tr>
+                <tr>
+                    <td>Nombre usuario: </td>
+                    <td><h:inputText value="#{registro.usuario}"/></td>
                 </tr>
                 <tr>
                     <td>Contraseña: </td>
-                    <td><h:inputSecret value="#{login.contrasenia}"/></td>
+                    <td><h:inputSecret value="#{registro.contrasenia}"/></td>
                 </tr>
+                
                 <tr>
                     <td colspan="2">
-                        <h:commandButton value="Autenticar" action="#{login.autenticar()}"/>
+                        <h:commandButton value="Registrarse" action="#{registro.registrarse()}"/>
                     </td>
                 </tr>
             </table>

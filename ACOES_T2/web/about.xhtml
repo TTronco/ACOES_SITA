@@ -1,18 +1,49 @@
-
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/WEB-INF/templates/menu.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     
     <ui:define name="titulo">
-        Quiénes somos
+        Conócenos
     </ui:define>   
     
     <ui:define name="contenido">
-       
+        
+        <br></br>
+        
+        <div class="about_box">
+            <h1 style="text-align: center; color: white; font-size: 40px"><h:graphicImage class="d" value="#{resource['logo-acoes-blanco.png']}" width="40%" height="30%"/></h1>
+                
+            <p ALIGN="justify" style="color:white">
+                ACOES (Asociación Colaboración y Esfuerzo) es una organización no gubernamental sin ánimo de lucro constituida en Tegucigalpa (Honduras). A través de los proyectos educativos que desarrolla, fomenta la solidaridad y trabaja para la educación y el desarrollo integral del ser humano en los sectores de población más desfavorecidos.    
+            </p>
             
+            <p ALIGN="justify" style="color:white">
+                ACOES HONDURAS se fundó en 1993 por el sacerdote Patricio Larrosa, natural de Huéneja (Granada), que al ver la gran necesidad de la población se propuso ayudar junto a un grupo de jóvenes hondureños.            </p>
+            
+            <p ALIGN="justify" style="color:white">
+                En la actualidad son más de 200 los voluntarios hondureños que sostienen el desarrollo de los distintos proyectos, con la ayuda de la cooperación internacional y de cientos de voluntarios de España, Estados Unidos, Canadá, Francia,….
+            </p>
+            
+        </div>
         
-        pues la vida es la vida
+        <br></br>
         
+        <div class="about_box">
+            <p align="center" style="color:white">
+                Algunos colaboradores de ACOES
+            </p>
+        </div>
+        
+        <marquee direction="LEFT">  <br />  
+            direction="LEFT"><h:graphicImage value="#{resource['colab1.PNG']}" height="400px" width="350px"/>
+            direction="LEFT"><h:graphicImage value="#{resource['colab2.PNG']}" height="400px" width="350px"/>
+            direction="LEFT"><h:graphicImage value="#{resource['colab3.PNG']}" height="400px" width="350px"/>
+            direction="LEFT"><h:graphicImage value="#{resource['colab4.PNG']}" height="400px" width="350px"/>
+            direction="LEFT"><h:graphicImage value="#{resource['colab5.PNG']}" height="400px" width="350px"/>
+        </marquee> <br />
+
+        <br></br>
         
     </ui:define>
 
