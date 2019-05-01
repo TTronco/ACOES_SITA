@@ -36,6 +36,7 @@ public class ApadrinarBean {
     private String contrasenia;
     
     private Apadrinar ap;
+    private boolean check;
     
     @Inject
     private ControlAutorizacion ctrl;  
@@ -65,6 +66,15 @@ public class ApadrinarBean {
         
     }
 
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+    
+    
     public String getUsuario() {
         return usuario;
     }
@@ -80,6 +90,8 @@ public class ApadrinarBean {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+   
     
     
     public String consultar(){
@@ -125,31 +137,47 @@ public class ApadrinarBean {
         }
         return null;
     }
+    
+   
+    
     public String notificar(){
+        
         FacesContext ctx = FacesContext.getCurrentInstance();
+        FacesMessage fm = null;
         //1. Doble comprobación de usuario. Si está logeado, sus datos de sesión se mantienen en controlAutorización.
         if(usuario.equals(ctrl.getUsuario().getUsuario()) && contrasenia.equals(ctrl.getUsuario().getContrasenia())){
-            user = ctrl.getUsuario();
-            //2. Creamos un objeto de apadrinar que aún no está relacionado por ningún niño.
-            Date fecha = new Date();        
-            Apadrinar a1 = new Apadrinar(15.0,fecha , null, user);
-            if(user.getApadrinarList() == null){
-                //primer niño que apadrina.                
-                List<Apadrinar> apadrinarList= new ArrayList<>();
-                apadrinarList.add(a1);
-                user.setApadrinarList(apadrinarList);
+            
+            if(check){
+                user = ctrl.getUsuario();
+                //2. Creamos un objeto de apadrinar que aún no está relacionado por ningún niño.
+                Date fecha = new Date();        
+                Apadrinar a1 = new Apadrinar(15.0,fecha , null, user);
+                if(user.getApadrinarList() == null){
+                    //primer niño que apadrina.                
+                    List<Apadrinar> apadrinarList= new ArrayList<>();
+                    apadrinarList.add(a1);
+                    user.setApadrinarList(apadrinarList);
+                }else{
+                    // no es el primer niño que apadrina, hay que reutilizar la lista.
+                    user.getApadrinarList().add(a1);
+                }
+
+                // Depende de los agentes lo que queda.           
+
+                // 3. Devolver página.
+               
+                return "gracias.xhtml";
             }else{
-                // no es el primer niño que apadrina, hay que reutilizar la lista.
-                user.getApadrinarList().add(a1);
+                fm = new FacesMessage("Debe aceptar los términos y condiciones.");
+                ctx.addMessage("apadrinarB:check", fm);
             }
             
-            // Depende de los agentes lo que queda.           
             
-            // 3. Devolver página.
-            return "gracias.xhtml";
         }else{
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrectos. Introdúzcalos de nuevo.", "Usuario o contraseña incorrectos. Introdúzcalos de nuevo." )); 
+            fm = new FacesMessage("Usuario o contraseña incorrectos. Introdúzcalos de nuevo.");
+            ctx.addMessage("apadrinarB:usuario", fm);            
         }
+        
         return null;
     }
     

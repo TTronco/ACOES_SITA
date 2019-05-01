@@ -9,6 +9,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,10 @@ public class Correo implements Serializable {
     private boolean moderado;
     
     private String contenido;
+    
+    private Date fecha_envio;
+    private Date fecha_llegada;
+    private String estado_envio;
     
     @ManyToOne
     private Usuario user;

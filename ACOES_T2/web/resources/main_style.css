@@ -61,7 +61,7 @@ body{
    
 }
 
-/*Apadrinar*/
+/*Apadrinar Antonio*/
 .FormularioApadrinar{
     
     padding-left: 40%;
@@ -95,4 +95,75 @@ body{
     padding-bottom: 1%;
     padding-top: 1%;
     font-size: 15px;
+}
+
+/* Parte Tarun */
+.contenido_inicio{
+    padding-top: 2em;
+    position:relative;
+    font-family: arial, verdana;
+    height: 200px;
+    width: 100%;
+    background-color: deepskyblue;
+}
+
+.a{
+    font-size: 40px;
+    padding-left: 22%;
+
+}
+
+.c{
+    font-size: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.b{
+    float: right;
+    padding-right: 30%;
+}
+
+.d{
+    float:left;
+    padding-left: 10%;
+    margin-right: 15px;
+    margin-bottom: 25px;
+}
+
+.otro_contenido{
+    overflow: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    background:#47c9af;
+}
+
+.apadrina_un_nino{
+    background: url(ninos.jpg);
+    border: 0.5px solid black;
+    margin-bottom: 2em;
+}
+
+.g{
+    background: white;
+    opacity: 0.65;
+}
+
+.h{
+    font-size: 50px;
+    margin:5%;
+    margin-left: 35%;
+    font-weight: bold;
+    color: black;
+    text-align: match-parent;
+}
+
+.i{
+    font-size: 30px;
+    text-align: center;
+}
+.area{
+    margin-top: 2%;
+    width: 1300px;
+    height: 300px;
 }

@@ -1,16 +1,38 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/WEB-INF/templates/menu_agente.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="titulo">
         Bienvenido
     </ui:define>   
     
     <ui:define name="contenido">
-       
-            
+                  
         
-        enviar contenedor
+        <br/>
+        
+        
+        <h:form>
+            <h3>¿Qué objetos están siendo enviados?</h3>
+            <h:selectOneMenu>
+                <f:selectItem itemLabel="Libros"/>
+                <f:selectItem itemLabel="Juguetes"/>
+                <f:selectItem itemLabel="Comida"/>
+            </h:selectOneMenu>
+            
+            
+            <h3>¿Cuánto o Cuántos?</h3>
+            <h:inputText />
+            <br/><br/>
+            <h:commandButton value="Enviar Contenedor" style="font-size: 100%"/>
+        </h:form>
+        
+        
+        <h:form>
+            <h:graphicImage value="#{resource['contenedores.jpg']}" width="30%" style="padding-left: 30%"/>
+            <h:graphicImage value="#{resource['reciContenedores.jpg']}" width="22%"/>
+</h:form>
         
         
     </ui:define>

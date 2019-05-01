@@ -13,9 +13,19 @@
     
     <ui:define name="contenido">
         
-       
-              
-        Formulario de apadrinar. Meter dats en la bd.
+        <form>
+            <div class="contenido_apadrina">
+                
+                <center>
+                         <h4> Apadrinar a un niño es algo más que un simple gesto </h4>
+                <ul>
+                    <p> Es darle la oportunidad a una vida.</p> 
+                    <p> Ayudar a que tenga éxito o triunfe una persona.</p>
+                    <p> Formación para que los jóvenes puedan ayudar en su zona.</p>
+                </ul>
+                </center>
+            </div>
+        </form>
         
         <c:choose>
             <c:when test="#{!empty controlAutorizacion.usuario}">
@@ -26,7 +36,8 @@
                         <div align="right"> </div>
                     </h:form>
                 </div>
-            
+                
+                <center>
                 <div class="contenido_apadrina"> </div>  
             
                     <div class="userypassword">
@@ -34,8 +45,8 @@
                             <table>
                                 <div class="userypassword">
                                     <tr>
-                                    <td>Usuario: </td>
-                                    <td><h:inputText value="#{apadrinarB.usuario}"/></td>
+                                        <td>Usuario: </td>
+                                        <td><h:inputText value="#{apadrinarB.usuario}"/></td>
                                     </tr>
                                     <tr>
                                         <td>Contraseña: </td>
@@ -45,27 +56,38 @@
                                 
                                 <tr>
                                     <td colspan="2" class="FormularioApadrinar">
-                                        <h:commandButton value="Enviar Petición" onclick="alert('Solicitud enviada.')" action="#{apadrinarB.notificar()}"/>
+                                        <h:commandButton value="Enviar Petición" action="#{apadrinarB.notificar()}"/>
                                     </td>
                                 </tr>
                                                                 
                             </table>
                             
                             <div >
-                                <h:selectBooleanCheckbox value = "teminos" /> Acepto las condiciones y términos generales.
+                                <h:selectBooleanCheckbox value ="#{apadrinarB.check}" />
+                                Acepto las <h:link value="condiciones y términos generales" outcome="condiciones.xhtml" />  y <h:link value="la política de protección de datos" outcome="proteccion.xhtml" />.
                             </div>
                             
                         </h:form>
+                        
                     </div>
             
-                   
-            
-         
+             </center>
                 
             </c:when>
             
             <c:otherwise>
-                <p>Debe registrarse o logearse en la página para poder apadrinar.</p>
+                <div class="contenido_apadrina">
+                    <center>
+                        <h3>Si desea colaborar debe <h:link value="registrarse" outcome="registro.xhtml" /> o <h:link value="logearse" outcome="login.xhtml" /> en la pagina.Muchas gracias</h3>
+                    </center>
+                    
+                 </div>
+                <div>
+                    <center>
+                    <h:graphicImage value="#{resource['apadrina.jpg']}" height="80%"/>
+                    <h:graphicImage value="#{resource['logo.jpg']}" width="23%"/>
+                    </center>
+                </div>
             </c:otherwise>
         </c:choose>
             
@@ -75,5 +97,3 @@
    
 
 </ui:composition>
-
-    

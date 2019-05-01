@@ -12,7 +12,59 @@
     
     <ui:define name="contenido">
               
-        Formulario enviar
+        <center>
+            <h:form>
+                <h:inputText class="area" value="#{enviarBean.correo}"/>
+            </h:form>
+        </center>
+        
+        <script>
+            function pulsar() {
+                            
+                alert("Su carta ha sido enviada");            
+            }
+            
+        </script>    
+        
+        <c:choose>
+            <c:when test="#{!empty controlAutorizacion.usuario}">
+               
+                <div class="contenido_apadrina"> </div>  
+            
+                <center>
+                    <div>
+                        <h:form>
+                            <table>
+                                
+                                <tr>
+                                    <td><h4>Niño: </h4></td>
+                                    <td><h:inputText value="#{enviarBean.nino}"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <h:commandButton value="Enviar Carta" onclick="alert('Solicitud enviada.')" action="#{enviarBean.guardar}"/>
+                                    </td>
+                                </tr>
+                                                                
+                            </table>
+                            
+                        </h:form>
+                    </div>
+                </center>
+ 	    </c:when>
+            
+            <c:otherwise>
+                <center>
+                   <h3>Recuerde estar <a href="registro.xhtml">registrado</a> o <a href="login.xhtml">logeado</a> en la página para poder enviar su carta.</h3>
+                   <h5>En caso de escribir y logearse luego, se perderá lo escrito.</h5>
+                </center>
+            </c:otherwise>
+        </c:choose>
+        
+        <h:form>
+            <marquee direction="RIGHT"><h:graphicImage value="#{resource['Carta.gif']}"/></marquee>
+
+        </h:form>
     </ui:define>
     
     
