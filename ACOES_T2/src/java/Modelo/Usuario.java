@@ -43,11 +43,11 @@ public class Usuario implements Serializable {
 
     protected String poblacion;
 
-    protected Integer codPostal; //cambio double -> integer
+    protected String codPostal; //cambio double -> string
 
-    protected Integer telefonoFijo; //cambio double -> integer
+    protected String telefonoFijo; //cambio double -> string
     
-    protected Integer telefonoMovil; //cambio double -> integer
+    protected String telefonoMovil; //cambio double -> string
 
     protected String relacion;
 
@@ -84,7 +84,7 @@ public class Usuario implements Serializable {
         this.apellido2 = apellido2;
     }
 
-    public Usuario(String nombre, String apellido1, String apellido2, String nif, String direccion, String poblacion, Integer codPostal, Integer telefonoMovil, String usuario, String contrasenia) {
+    public Usuario(String nombre, String apellido1, String apellido2, String nif, String direccion, String poblacion, String codPostal, String telefonoMovil, String usuario, String contrasenia) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
@@ -158,23 +158,23 @@ public class Usuario implements Serializable {
         this.poblacion = poblacion;
     }
 
-    public double getCodPostal() {
+    public String getCodPostal() {
         return codPostal;
     }
 
-    public void setCodPostal(Integer codPostal) {
+    public void setCodPostal(String codPostal) {
         this.codPostal = codPostal;
     }
 
-    public Integer getTelefonoFijo() {
+    public String getTelefonoFijo() {
         return telefonoFijo;
     }
 
-    public void setTelefonoFijo(Integer telefonoFijo) {
+    public void setTelefonoFijo(String telefonoFijo) {
         this.telefonoFijo = telefonoFijo;
     }
 
-    public Integer getTelefonoMovil() {
+    public String getTelefonoMovil() {
         return telefonoMovil;
     }
 
@@ -186,7 +186,7 @@ public class Usuario implements Serializable {
         this.numSocio = numSocio;
     }
 
-    public void setTelefonoMovil(Integer telefonoMovil) {
+    public void setTelefonoMovil(String telefonoMovil) {
         this.telefonoMovil = telefonoMovil;
     }
 

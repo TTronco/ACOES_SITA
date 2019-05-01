@@ -10,6 +10,8 @@ import Modelo.Agente;
 import Modelo.Usuario;
 import autenticacion.ControlAutorizacion;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -27,112 +29,48 @@ import javax.inject.Inject;
 @RequestScoped
 public class Registro{
     
-    private String nombre;
- 
-    private String apellido1;
-  
-    private String apellido2;
-    
-    private String nif;
-
-    private String direccion;
-
-    private String poblacion;
-
-    private Integer codPostal;
-    
-    private Integer telefonoMovil;
-    
-    private String usuario;
-    private String contrasenia;
-    
     private Usuario nuevo;
-
+    private String repass;   
+    private boolean check;
     
+    private List<Usuario> usuarios;
+    boolean reg_ok;
+    
+    @Inject
+    private ControlAutorizacion ctrl;
     
     /**
      * Creates a new instance of Registro
      */
     public Registro()  {
         
-        // 1. Creamos un usuario con dos datos proporcionados.
-        this.nuevo = new Usuario (nombre, apellido1, apellido2, nif, direccion, poblacion, codPostal, telefonoMovil, usuario, contrasenia);
-        
+        // 1. Inicializamos a modo ficticio los usuarios que están ya creados y registrados.
+        nuevo = new Usuario();
+        usuarios = new ArrayList<Usuario>(); 
+        usuarios.add(new Usuario("normal", "pw"));
+        usuarios.add(new Usuario("u1", "pw"));
+        usuarios.add(new Usuario("u2", "pw"));
+        usuarios.add(new Usuario("u3", "pw"));       
     }
     
     
-    public String getNombre() {
-        return nombre;
+    public String getRepass() {
+        return repass;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setRepass(String repass) {
+        this.repass = repass;
     }
 
-    public String getApellido1() {
-        return apellido1;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
-
-    public String getApellido2() {
-        return apellido2;
-    }
-
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
-    }
-
-    public String getNif() {
-        return nif;
-    }
-
-    public void setNif(String nif) {
-        this.nif = nif;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getPoblacion() {
-        return poblacion;
-    }
-
-    public void setPoblacion(String poblacion) {
-        this.poblacion = poblacion;
-    }
-
-    public Integer getCodPostal() {
-        return codPostal;
-    }
-
-    public void setCodPostal(Integer codPostal) {
-        this.codPostal = codPostal;
-    }
-
-    public Integer getTelefonoMovil() {
-        return telefonoMovil;
-    }
-
-    public void setTelefonoMovil(Integer telefonoMovil) {
-        this.telefonoMovil = telefonoMovil;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
+    
+    
     public Usuario getNuevo() {
         return nuevo;
     }
@@ -140,96 +78,73 @@ public class Registro{
     public void setNuevo(Usuario nuevo) {
         this.nuevo = nuevo;
     }
-    
-    
-    
-    
 
-    public String getUsuario() {
-        return usuario;
+    public boolean isCheck() {
+        return check;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+
+    public boolean isReg_ok() {
+        return reg_ok;
+    }
+
+    public void setReg_ok(boolean reg_ok) {
+        this.reg_ok = reg_ok;
+    }
+
+    public ControlAutorizacion getCtrl() {
+        return ctrl;
+    }
+
+    public void setCtrl(ControlAutorizacion ctrl) {
+        this.ctrl = ctrl;
     }
     
-    public String registrarse (){
-       
+ 
+    
+    public String registrarse(){ 
         FacesContext ctx = FacesContext.getCurrentInstance();
-        //1. Comprobamos si el usuario está registrado.
-            File archivo = null;
-            FileReader fr = null;
-            BufferedReader br = null;
-            boolean ok = true;
-            try {
-
-             archivo = new File ("users.txt");
-             fr = new FileReader (archivo);
-             br = new BufferedReader(fr);
-
-             // Lectura del fichero
-
-             String line; 
-             while((line=br.readLine())!=null){
-                 Scanner sc = new Scanner(line);
-                 sc.useDelimiter(",");
-                 if(sc.hasNext()){
-                     String l = sc.next();
-                      System.out.println(line);
-                     if(l.equals(usuario)){
-                         ok = false;
-                         break;
-                     }
-                 }
-             }
-
-          }
-          catch(Exception e){
-             e.printStackTrace();
-          }finally{
-
-             try{                    
-                if( null != fr ){   
-                   fr.close();     
-                }                  
-             }catch (Exception e2){ 
-                e2.printStackTrace();
-             }
-          }
-        
-        //2. Registramos al usuario si no lo estaba antes.
-         
-            if(ok){
-                // Guardamos esos datos en un fichero a modo de base de datos para consultarlos en el login.
-                FileWriter fichero = null;
-                PrintWriter pw = null;
-                try{
-                    fichero = new FileWriter("users.txt");
-                    pw = new PrintWriter(fichero);
-                    pw.println(nombre + " " + apellido1 + " " +  apellido2 + " " +  nif + " " +  direccion + " " +  poblacion + " " +  codPostal + " " +  telefonoMovil + " " +  usuario + " " +  contrasenia);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                   try {
-
-                   if (null != fichero)
-                      fichero.close();
-                   } catch (Exception e2) {
-                      e2.printStackTrace();
-                   }
-                }
-                
-        }else{
-             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario " + usuario + " introducido ya está registrado.", "El usuario " + usuario + "  introducido ya está registrado."));
+        FacesMessage fm = null;
+        //1. Verificar que el nombre de usuario introducido no existe ya.
+        boolean exists = false;
+        for(Usuario u: usuarios){
+           if(nuevo.getUsuario().equals(u.getUsuario())){
+                    exists = true;
+                    break;
+           }
         }
-           
-         
+        if(exists){
+            fm = new FacesMessage("El nombre de usuario introducido ya existe.");
+            ctx.addMessage("Nombre usuario >", fm);
+        }
+        //2. Verificar que la contraseña se ha introducido bien.
+        boolean pw_ok = true;
+         if (!nuevo.getContrasenia().equals(repass)) {
+            pw_ok = false;
+            fm = new FacesMessage("Las contraseñas deben coincidir.");
+            ctx.addMessage("Repita contraseña >", fm);
+            
+         }
+        //3. Verificar que se han aceptado los términos.
+        if(!check){
+            fm = new FacesMessage("Debe aceptar los términos y condiciones.");
+            ctx.addMessage("registro:check", fm);
+        }
+            
        
+       // Creamos al usuario en caso de que se cumplan las condiciones adecuadas.
+       if(!exists && check && pw_ok){          
+           usuarios.add(nuevo);
+           reg_ok= true;
+       }else{
+           reg_ok = false;
+           return null;
+       }
         
-        
-        
-        return "login.xhtml";
+       return "exitoRegistro.xhtml";
     }
 }
 

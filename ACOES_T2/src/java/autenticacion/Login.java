@@ -38,7 +38,10 @@ public class Login {
     public Login() {
         //Se simula la tabla de usuarios con una lista de usuarios.
         usuarios = new ArrayList<Usuario>();  
-        usuarios.add(new Usuario("normal", "boniatos"));
+        usuarios.add(new Usuario("normal", "pw"));
+        usuarios.add(new Usuario("u1", "pw"));
+        usuarios.add(new Usuario("u2", "pw"));
+        usuarios.add(new Usuario("u3", "pw"));
         //Se simula la tabla de agentes con una lista de agentes. Los agentes no se pueden registrar, son creados por ACOES.
         agentes = new ArrayList<Agente>();
         agentes.add(new Agente("iman", "boniato"));

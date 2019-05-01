@@ -12,63 +12,59 @@
     </ui:define>   
     
     <ui:define name="contenido">
-       
+        <c:choose>
+            <c:when test="#{empty controlAutorizacion.usuario}">
+                 <h:form id="registro">
+                     <h:panelGrid columns="1">
+                         <h:outputText value="Nombre:"/>
+                         <h:inputText value="#{registro.nuevo.nombre}" required="true"/>
+                         <h:message for="nombre"/>
+                         
+                         <h:outputText value="Primer apellido:" />
+                         <h:inputText value="#{registro.nuevo.apellido1}" required="true"/>
+                         
+                         <h:outputText value="Segundo apellido:"/>
+                         <h:inputText value="#{registro.nuevo.apellido2}"/>
+                         
+                         <h:outputText value="nif:"/>
+                         <h:inputText value="#{registro.nuevo.nif}"/>
+                         
+                         <h:outputText value="Dirección:"/>
+                         <h:inputText value="#{registro.nuevo.direccion}"/>
+                         
+                         <h:outputText value="Población:"/>
+                         <h:inputText value="#{registro.nuevo.poblacion}"/>
+                         
+                         <h:outputText value="Código postal:"/>
+                         <h:inputText value="#{registro.nuevo.codPostal}"/>
+                         
+                         <h:outputText value="Teléfono Móvil:"/>
+                         <h:inputText value="#{registro.nuevo.telefonoMovil}"/>
+                         
+                         <h:outputText value="Nombre de usuario:"/>
+                         <h:inputText value="#{registro.nuevo.usuario}" required="true"/>
+                         
+                         <h:outputText value="Contraseña:"/>
+                         <h:inputSecret value="#{registro.nuevo.contrasenia}" required="true"/>
+                         
+                         <h:outputText value="Repita contraseña:"/>
+                         <h:inputSecret id="repass" value="#{registro.repass}" required="true"/>
+                         
+                         <div >
+                            <h:selectBooleanCheckbox value ="#{registro.check}" /> Acepto las condiciones y términos generales.
+                         </div>
             
+                         <h:commandButton value="Registrarse" action="#{registro.registrarse()}"/>
+                     </h:panelGrid>
+                 </h:form>
+            </c:when>
+            <c:otherwise>
+                <p>Para crear un nuevo registro debe 
+                    <h:commandLink action="#{registro.ctrl.logout()}">salir</h:commandLink> antes de la aplicación.</p>
+            </c:otherwise>
+        </c:choose>
         
-        formulario registro.
-        
-        <h:form id="reg">
-            <table>
-                <tr>
-                    <td>Nombre: </td>
-                    <td><h:inputText value="#{registro.nombre}"/></td>
-                </tr>
-                <tr>
-                    <td> Primer apellido: </td>
-                    <td><h:inputText value="#{registro.apellido1}"/></td>
-                </tr>
-                <tr>
-                    <td> Segundo apellido: </td>
-                    <td><h:inputText value="#{registro.apellido2}"/></td>
-                </tr>
-                <tr>
-                    <td>Nif: </td>
-                    <td><h:inputText value="#{registro.nif}"/></td>
-                </tr>
-                <tr>
-                    <td>Dirección: </td>
-                    <td><h:inputText value="#{registro.direccion}"/></td>
-                </tr>
-                <tr>
-                    <td>Población: </td>
-                    <td><h:inputText value="#{registro.poblacion}"/></td>
-                </tr>
-                
-                <tr>
-                    <td>Código Postal: </td>
-                    <td><h:inputText value="#{registro.codPostal}"/></td>
-                </tr>
-                <tr>
-                    <td>Teléfono Móvil: </td>
-                    <td><h:inputText value="#{registro.telefonoMovil}"/></td>
-                </tr>
-                <tr>
-                    <td>Nombre usuario: </td>
-                    <td><h:inputText value="#{registro.usuario}"/></td>
-                </tr>
-                <tr>
-                    <td>Contraseña: </td>
-                    <td><h:inputSecret value="#{registro.contrasenia}"/></td>
-                </tr>
-                
-                <tr>
-                    <td colspan="2">
-                        <h:commandButton value="Registrarse" action="#{registro.registrarse()}"/>
-                    </td>
-                </tr>
-            </table>
-        </h:form>
-        
+       
         
     </ui:define>
 
