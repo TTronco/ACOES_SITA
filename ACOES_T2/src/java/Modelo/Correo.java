@@ -29,6 +29,8 @@ public class Correo implements Serializable {
     
     private String contenido;
     
+    private boolean valido;
+    
     @ManyToOne
     private Usuario user;
     
@@ -41,10 +43,12 @@ public class Correo implements Serializable {
     public Correo() {
     }
 
-    public Correo(String tipo, boolean moderado, String contenido) {
+    public Correo(Integer codigo, String tipo, boolean moderado, String contenido) {
+        this.codigo = codigo;
         this.tipo = tipo;
         this.moderado = moderado;
         this.contenido = contenido;
+        this.valido = false;
     }
        
     
@@ -97,6 +101,14 @@ public class Correo implements Serializable {
         this.nene = nene;
     }
 
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+    
     
     
     @Override

@@ -142,3 +142,25 @@ body{
    color: grey;
 }
 
+.correoTable {   
+   border-collapse:collapse;
+   border:1px solid #000000;
+   margin: 0 auto;
+}
+
+.correoTableHeader {
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.correoTableOddRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.correoTableEvenRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}

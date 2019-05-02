@@ -100,7 +100,7 @@ public class EnviarBean implements Serializable {
         if(ok){
             user = ctrl.getUsuario();
             
-            Correo c = new Correo("",false,correo);
+            Correo c = new Correo(10, "",false,correo);
             
             if(user.getCorreoList() == null){
                 List<Correo> cor = new ArrayList<>();
