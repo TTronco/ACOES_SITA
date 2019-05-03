@@ -11,16 +11,86 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
 
-/**
- *
- * @author francis
- */
 @Named(value = "controlAutorizacion")
 @SessionScoped
 public class ControlAutorizacion implements Serializable {
 
     private Usuario usuario;
     private Agente agente;
+    
+    public String getNombre(){
+        if(usuario!= null){
+            return usuario.getNombre();
+        }else{
+            return agente.getNombre();
+        }        
+    }
+    
+    public String getApellidos(){
+        if(usuario!= null){
+           return usuario.getApellidos();
+        }else{
+           return agente.getApellidos();
+        }      
+        
+    }
+    
+    public String getNif(){
+        if(usuario!= null){
+           return usuario.getNif();
+        }else{
+           return agente.getNif();
+        }  
+        
+    }
+    
+    public String getDireccion(){
+        if(usuario!= null){
+           return usuario.getDireccion();
+        }else{
+           return agente.getDireccion();
+        }  
+        
+    }
+    
+    public String getPoblacion(){
+        if(usuario!= null){
+           return usuario.getPoblacion();
+        }else{
+           return agente.getPoblacion();
+        }  
+        
+    }
+    
+    public String getCodigoPostal(){
+        if(usuario!= null){
+           return usuario.getCodPostal();
+        }else{
+           return agente.getCodPostal();
+        } 
+        
+    }
+    
+    public String getTelefonoMovil(){
+        if(usuario!= null){
+           return usuario.getTelefonoMovil();
+        }else{
+           return agente.getTelefonoMovil();
+        } 
+        
+    }
+    public String getUsuarioNombre(){
+        if(usuario!= null){
+           return usuario.getUsuario();
+        }else{
+           return agente.getUsuario();           
+        }         
+    }
+   
+    public String getIdCentro(){
+        return agente.getIdCentro();
+    }
+   
     
     private boolean ag = false;
 
@@ -48,6 +118,7 @@ public class ControlAutorizacion implements Serializable {
         return agente;
     }
 
+   
     public String home() {
         // Implementar el método
         // Devuelve la página Home dependiendo del rol del usuario
@@ -56,10 +127,8 @@ public class ControlAutorizacion implements Serializable {
         // Si el usuario es un usuario normal debe devolver la página normal.xhtml
         
         String page = "login.xhtml";
-        if(usuario != null && !ag){
-            page = "socio.xhtml";
-        }else if(agente != null && ag){            
-            page = "Agente.xhtml";
+        if(usuario != null || agente != null){
+            page = "index.xhtml";
         }
         
         return page;
@@ -77,8 +146,7 @@ public class ControlAutorizacion implements Serializable {
         return "login.xhtml";
     }
 
-    /**
-     * Creates a new instance of ControlAutorizacion
+    /* Creates a new instance of ControlAutorizacion
      */
     public ControlAutorizacion() {
     }

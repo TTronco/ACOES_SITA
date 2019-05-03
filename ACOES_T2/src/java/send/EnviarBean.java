@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Bean;
+package send;
 
 import Modelo.*;
 import autenticacion.ControlAutorizacion;
@@ -55,6 +55,16 @@ public class EnviarBean implements Serializable {
         Niño n5 = new Niño("Iman", "Nevera", "",apad);
         lista_ninos.add(n1); lista_ninos.add(n2); lista_ninos.add(n3); lista_ninos.add(n4); lista_ninos.add(n5);
         this.ninos = lista_ninos;
+        
+        
+        user = new Usuario();
+        Date fecha = new Date();
+        List<Apadrinar> apadrinarList = new ArrayList<>();
+        apadrinarList.add(new Apadrinar(15, fecha, n1, user));
+        apadrinarList.add(new Apadrinar(15, fecha, n2, user));
+
+        user.setApadrinarList(apadrinarList);
+        
     }
     
     public String getUsuario(){
@@ -84,10 +94,19 @@ public class EnviarBean implements Serializable {
     public void setCorreo(String correo){
         this.correo = correo;
     }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
     
+   
     public String guardar(){
         FacesContext ctx = FacesContext.getCurrentInstance();
-        
+        /*
         boolean ok = false;
         for(Niño n : ninos){
             if (nin.equals(n.getNombre())) {
@@ -97,7 +116,7 @@ public class EnviarBean implements Serializable {
         }
         
      //   if(usuario.equals(ctrl.getUsuario().getUsuario())){
-        if(ok){
+        if(ok){*/
             user = ctrl.getUsuario();
             
             Correo c = new Correo("",false,correo);
@@ -110,12 +129,12 @@ public class EnviarBean implements Serializable {
                 user.getCorreoList().add(c);
             }
             
-             return "gracias.xhtml";           
-        }else{
+             return "graciasEnviarCarta.xhtml";           
+        /*}else{
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al enviar la carta. Inténtelo de nuevo","Error al enviar la carta. Inténtelo de nuevo"));
         }
         
-        return null;
+        return null;*/
     }
     
 }

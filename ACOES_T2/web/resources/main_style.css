@@ -29,75 +29,27 @@ body{
     border-top: 0.1em solid black; 
 }
 
-#menu li {
-   
+#menu li {  
+    overflow: hidden;
     text-align: center;    
     display: inline-block;    
-    width: calc(100% / 9); /* añade esto, se divide por 6 porque hay 6 elementos */
+    width: calc(145% / 9); /* añade esto, se divide por 6 porque hay 6 elementos */
 }
 
 #menu li a:link{
-    font-size: 30px;
+    font-size: 38px;
     color: darkblue;
     font-weight : bold;
     text-decoration: none;
 }
 .contenido{
-    padding-top: 7em;
+    padding-top: 0em;
     position:relative;
     font-family: arial, verdana;
+    height: 200px;
+    width: 100%;
 }
 
-
-#footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
-   width:100%;
-   background:#47c9af;
-   text-align: center;
-   color: grey;
-   
-}
-
-/*Apadrinar Antonio*/
-.FormularioApadrinar{
-    
-    padding-left: 40%;
-    padding-right: 40%;
-    padding-bottom: 1%;
-    padding-top: 1%;
-    font-size: 15px;
-}
-
-.BotonAceptarCondiciones{
-    padding-left: 40%;
-    padding-right: 40%;
-    font-style: italic;
-    font-size: 10px;
-}
-
-.userypassword{
-     padding-left: 40%;
-     padding-right: 40%;
-     padding-bottom: 1%;
-     padding-top: 1%;
-     font-size: 20px;
-}
-
-
-/* Registro */
-
-#registro{
-    padding-left: 40%;
-    padding-right: 40%;
-    padding-bottom: 1%;
-    padding-top: 1%;
-    font-size: 15px;
-}
-
-/* Parte Tarun */
 .contenido_inicio{
     padding-top: 2em;
     position:relative;
@@ -106,7 +58,11 @@ body{
     width: 100%;
     background-color: deepskyblue;
 }
-
+/*
+ <!--Estas deben ir en otro css, para no retocar todos los otros xhtml-->
+ 
+*/
+ 
 .a{
     font-size: 40px;
     padding-left: 22%;
@@ -166,4 +122,94 @@ body{
     margin-top: 2%;
     width: 1300px;
     height: 300px;
+}
+
+#footer{
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:35px;
+   width:100%;
+   background:#47c9af;
+   text-align: center;
+   color: grey;
+}
+
+.error_editarperfil{
+    padding-left: 100px;
+    padding-bottom: 100px;
+}
+
+.about_box{
+    overflow: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    background:#47c9af;
+    padding-right: 5%;
+}
+
+.EditarPerfilEstilo{
+    
+    font-size: 15px;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+}
+
+/*Apadrinar*/
+.FormularioApadrinar{
+    
+    padding-left: 40%;
+    padding-right: 40%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    font-size: 15px;
+}
+
+.BotonAceptarCondiciones{
+    padding-left: 40%;
+    padding-right: 40%;
+    font-style: italic;
+    font-size: 10px;
+}
+
+.userypassword{
+     padding-left: 40%;
+     padding-right: 40%;
+     padding-bottom: 1%;
+     padding-top: 1%;
+     font-size: 20px;
+}
+
+/* Registro */
+
+#registro{
+    padding-left: 40%;
+    padding-right: 40%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    font-size: 15px;
+}
+
+.correoTable {   
+   border-collapse:collapse;
+   border:1px solid #000000;
+   margin: 0 auto;
+}
+
+.correoTableHeader {
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.correoTableOddRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.correoTableEvenRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
 }

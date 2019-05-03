@@ -30,6 +30,7 @@ public class Correo implements Serializable {
     
     private String contenido;
     
+    private boolean valido;
     private Date fecha_envio;
     private Date fecha_llegada;
     private String estado_envio;
@@ -51,8 +52,14 @@ public class Correo implements Serializable {
         this.moderado = moderado;
         this.contenido = contenido;
     }
-       
-    
+
+    public Correo(Integer codigo, String tipo, boolean moderado, String contenido) {
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.moderado = moderado;
+        this.contenido = contenido;
+        this.valido = false;
+    }
     // Getters & setters  
     public Integer getCodigo() {
         return codigo;
@@ -100,6 +107,38 @@ public class Correo implements Serializable {
 
     public void setNene(Niño nene) {
         this.nene = nene;
+    }
+
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+
+    public Date getFecha_envio() {
+        return fecha_envio;
+    }
+
+    public void setFecha_envio(Date fecha_envio) {
+        this.fecha_envio = fecha_envio;
+    }
+
+    public Date getFecha_llegada() {
+        return fecha_llegada;
+    }
+
+    public void setFecha_llegada(Date fecha_llegada) {
+        this.fecha_llegada = fecha_llegada;
+    }
+
+    public String getEstado_envio() {
+        return estado_envio;
+    }
+
+    public void setEstado_envio(String estado_envio) {
+        this.estado_envio = estado_envio;
     }
 
     
