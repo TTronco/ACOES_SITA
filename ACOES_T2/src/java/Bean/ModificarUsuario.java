@@ -114,7 +114,6 @@ public class ModificarUsuario{
          public Usuario getNuevo() {
             return nuevo;
         }
-
         public void setNuevo(Usuario nuevo) {
         this.nuevo = nuevo;
         }

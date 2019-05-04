@@ -95,11 +95,6 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
     
-    
-    
-    
-    
-    
     public String getNombre() {
         return nombre;
     }

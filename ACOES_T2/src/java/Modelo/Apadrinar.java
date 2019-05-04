@@ -50,6 +50,11 @@ public class Apadrinar implements Serializable {
 
     public Apadrinar() {
     }
+    
+    public Apadrinar(Niño nombreNiño, Usuario nombreUsuario){
+        this.niñoCodigo = nombreNiño;
+        this.usuarioNumSocio = nombreUsuario;
+    }
 
     public Apadrinar(double donacion, Date fecha_inicio, Niño niñoCodigo, Usuario usuarioNumSocio) {
         this.donacion = donacion;

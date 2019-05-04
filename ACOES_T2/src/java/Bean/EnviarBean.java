@@ -12,14 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.inject.Named;
 import java.util.Date;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 
 /**
  *

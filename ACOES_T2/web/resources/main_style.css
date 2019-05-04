@@ -51,6 +51,7 @@ body{
 }
 
 .contenido_inicio{
+    overflow: hidden;
     padding-top: 2em;
     position:relative;
     font-family: arial, verdana;
@@ -179,4 +180,82 @@ body{
      padding-bottom: 1%;
      padding-top: 1%;
      font-size: 20px;
+}
+
+/* Registro */
+
+#registro{
+    padding-left: 40%;
+    padding-right: 40%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    font-size: 15px;
+}
+
+.grid_editarPerfil{
+    padding-left: 25%;
+    padding-top: 5%; 
+    overflow: auto;
+}
+
+.correoTable {   
+   border-collapse:collapse;
+   border:1px solid #000000;
+   margin: 0 auto;
+}
+
+.correoTableHeader {
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.correoTableOddRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.correoTableEvenRow {
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+
+.padrinoTable{
+    border-collapse: collapse;
+    border:1px solid #000000;
+    margin: 0 auto; 
+    font-size: 20px;
+}
+
+.padrinoTableHeader{
+   text-align:center;
+   background:none repeat scroll 0 0 cyan;
+  hinorder-bottom:2px solid white;  
+   padding:10px;
+}
+
+.padrinoTableOddRow{
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.padrinoTableEvenRow {
+   text-align:center;
+   background:none repeat scroll 0 0 black;
+}
+
+.solicitud{
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.solicitudPendiente{
+    font-size: 20px;
+    margin-left: 10%;
+}
+
+.asignandoNino{
+    width: 20%;
+    padding-left: 50%;
 }

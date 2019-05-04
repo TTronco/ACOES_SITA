@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/menu.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <ui:define name="titulo">
+        Apadrinar
+    </ui:define>   
+    
+    <ui:define name="contenido">
+        
+        <br/>
+        <h:dataTable value="#{asignarNiñoBean.apadrinados}" var="apadrinar"
+                        styleClass = "padrinoTable"
+                        headerClass = "padrinoTableHeader"
+                        rowClasses = "padrinoTableOddRow, padrinoTableEvenRow">
+                
+                <h:column> 
+                    <f:facet name = "header">Socio</f:facet>                    
+                        <h:form>
+                            <h:selectOneMenu value="#{asignarNiñoBean.user}">
+                                <c:forEach var="item" items="#{asignarNiñoBean.usuarios}">
+                                    <f:selectItem  itemLabel="#{item.nombre}"/>
+                                </c:forEach>    
+                            </h:selectOneMenu>
+                        </h:form>
+                              
+                    
+                </h:column>
+   
+                <h:column>  
+                    <f:facet name = "header">Niño</f:facet>
+                   
+                        <h:form>
+                            <h:selectOneMenu value="#{asignarNiñoBean.kid}">
+                                <c:forEach var="item" items="#{asignarNiñoBean.ninos}">
+                                    <f:selectItem itemLabel="#{item.nombre}"/>
+                                </c:forEach>    
+                            </h:selectOneMenu>
+                        </h:form>                                   
+                   
+                </h:column>
+   
+                <h:column>
+                   <f:facet name = "header">Acción</f:facet>
+                       <h:form>
+                           <h:commandButton value="Asignar" onclick="alert('Se le ha asignado un niño')"/>  
+                       </h:form>
+                </h:column>
+                
+                    
+            </h:dataTable>
+        
+    </ui:define>
+
+ </ui:composition>

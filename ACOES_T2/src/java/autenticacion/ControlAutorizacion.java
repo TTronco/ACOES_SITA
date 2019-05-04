@@ -127,10 +127,8 @@ public class ControlAutorizacion implements Serializable {
         // Si el usuario es un usuario normal debe devolver la página normal.xhtml
         
         String page = "login.xhtml";
-        if(usuario != null && !ag){
-            page = "socio.xhtml";
-        }else if(agente != null && ag){            
-            page = "Agente.xhtml";
+        if(usuario != null || agente != null){
+            page = "index.xhtml";
         }
         
         return page;

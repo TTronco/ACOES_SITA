@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/menu.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <ui:define name="titulo">
+        Registrado
+    </ui:define>   
+    
+    <ui:define name="contenido">
+         <c:choose>
+             <c:when test="#{registro.reg_ok}">
+                <div>
+                    <p>El registro se ha realizado con éxito. </p>
+                    <p><h:link outcome="login.xhtml">Ir a la página de login</h:link></p>
+                </div>
+            </c:when>
+            <c:otherwise>
+                No tiene autorización para acceder a esta página.
+            </c:otherwise>
+
+        </c:choose>
+
+    </ui:define>
+    
+</ui:composition>
