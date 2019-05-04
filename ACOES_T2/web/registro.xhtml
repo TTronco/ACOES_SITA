@@ -16,10 +16,10 @@
         <c:choose>
             <c:when test="#{empty controlAutorizacion.usuario}">
                  <h:form id="registro">
-                     <h:panelGrid columns="1">
+                    <h:panelGrid columns="4" cellpadding = "10" cellspacing = "1" style="margin: 0 auto;">
                          <h:outputText value="Nombre:"/>
                          <h:inputText value="#{registro.nuevo.nombre}" required="true" requiredMessage="Debe introducir su nombre."/>
-                         <h:message for="nombre"/>
+                         
                          
                          <h:outputText value="Apellidos:" />
                          <h:inputText value="#{registro.nuevo.apellidos}" required="true" requiredMessage="Debe introducir sus apellidos."/>                         
@@ -47,17 +47,25 @@
                                         validatorMessage="La contraseña debe contener entre 8-16 caracteres.">
                              <f:validateLength minimum="8" maximum="15"/>
                          </h:inputSecret>
-                         <h:message for = "secret" style = "color:red" />
+                         
                          
                          <h:outputText value="Repita contraseña:"/>
                          <h:inputSecret id="repass" value="#{registro.repass}" required="true" requiredMessage="Debe introducir otra vez su contraseña."/>
+                        
                          
-                         <div >
-                            <h:selectBooleanCheckbox value ="#{registro.check}" /> 
-                            Acepto las <h:link value="condiciones y términos generales" outcome="condiciones.xhtml" />  y <h:link value="la política de protección de datos" outcome="proteccion.xhtml" />.
-                         </div>
+                         <f:facet name = "footer">
+                             <h:panelGroup>
+                                 <h:selectBooleanCheckbox value ="#{registro.check}" /> 
+                                Acepto las <h:link value="condiciones y términos generales" outcome="condiciones.xhtml" />  y <h:link value="la política de protección de datos" outcome="proteccion.xhtml" />.
+                             </h:panelGroup>
+                            
+                            <h:panelGroup style = "display:block; text-align:center">
+                                <h:commandButton value="Registrarse" action="#{registro.registrarse()}"/>
+                            </h:panelGroup>
+                        </f:facet>
+                         
             
-                         <h:commandButton value="Registrarse" action="#{registro.registrarse()}"/>
+                         
                      </h:panelGrid>
                  </h:form>
             </c:when>

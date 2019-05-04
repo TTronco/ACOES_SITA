@@ -1,6 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Tarea 2: Vista JSF.
+ * @author Grupo 1:
+ *          - Tarun D. 
+            - Salvador C. F.
+            - Iman H. M.
+            - Antonio P. C.
  */
 package autenticacion;
 
@@ -15,11 +18,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-/**
- *
- * 
- * Iman Hasnaouia Meskini
- */
 @Named(value = "login")
 @RequestScoped
 public class Login {
@@ -44,9 +42,10 @@ public class Login {
         usuarios.add(new Usuario("u3", "pw"));
         //Se simula la tabla de agentes con una lista de agentes. Los agentes no se pueden registrar, son creados por ACOES.
         agentes = new ArrayList<Agente>();
-        agentes.add(new Agente("iman", "boniato"));
-        agentes.add(new Agente("tarun", "yo"));
-        agentes.add(new Agente("antonio", "ñocos"));
+        agentes.add(new Agente("agente", "pw"));
+        agentes.add(new Agente("iman", "pw"));
+        agentes.add(new Agente("tarun", "pw"));
+        agentes.add(new Agente("antonio", "pw"));
         
     }
 

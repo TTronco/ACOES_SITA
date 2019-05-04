@@ -49,7 +49,7 @@
                                 
                                 <tr>
                                     <td colspan="2">
-                                        <h:commandButton value="Enviar Carta" onclick="alert('Su carta ha sido enviada')" action="#{enviarBean.guardar}"/>
+                                        <h:commandButton value="Enviar Carta" onclick="if(!confirm('¿Estas seguro?')) return false" action="#{enviarBean.guardar}"/>
                                     </td>
                                 </tr>
                                                                 
