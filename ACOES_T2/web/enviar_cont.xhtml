@@ -20,13 +20,15 @@
                 <f:selectItem itemLabel="Libros"/>
                 <f:selectItem itemLabel="Juguetes"/>
                 <f:selectItem itemLabel="Comida"/>
+                <f:selectItem itemLabel="Material Escolar"/>
             </h:selectOneMenu>
             
             
             <h3>¿Cuánto o Cuántos?</h3>
-            <h:inputText />
+            <h:inputText required="true" requiredMessage="Debe introducir una cantidad"/>
             <br/><br/>
-            <h:commandButton value="Enviar Contenedor" style="font-size: 100%"/>
+            <h:commandButton value="Enviar Contenedor" style="font-size: 100%" onclick="if(!confirm('¿Estas seguro?')) return false" action="#{enviarBean.contenedor(true)}"/>
+                
         </h:form>
         
         

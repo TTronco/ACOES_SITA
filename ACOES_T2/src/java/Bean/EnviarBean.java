@@ -132,4 +132,11 @@ public class EnviarBean implements Serializable {
         return null;*/
     }
     
+    public String contenedor(boolean aceptar){
+        if (aceptar){
+            return "index.xhtml";
+        }else{
+            return null;
+        }
+    }
 }
