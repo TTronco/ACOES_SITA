@@ -34,6 +34,10 @@ public class Agente extends Usuario {
     public Agente(List<Niño> niñoList) {
         this.niñoList = niñoList;
     }
+
+    public Agente() {
+        
+    }
         
     // Getters & setters  
     

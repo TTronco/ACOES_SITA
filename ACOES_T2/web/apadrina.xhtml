@@ -38,8 +38,7 @@
                 </div>
                 
                 <center>
-                <div class="contenido_apadrina"> </div>  
-            
+                <div class="contenido_apadrina"> </div>                      
                     <div class="userypassword">
                         <h:form>
                             <table>
@@ -56,18 +55,20 @@
                                 
                                 <tr>
                                     <td colspan="2" class="FormularioApadrinar">
-                                        <h:commandButton value="Enviar Petición" onclick="alert('Solicitud enviada.')" action="#{apadrinarB.notificar()}"/>
+                                        <h:commandButton value="Enviar Petición" action="#{apadrinarB.notificar()}" onclick="if(!confirm('¿Estas seguro?')) return false"/>
                                     </td>
                                 </tr>
                                                                 
                             </table>
                             
                             <div >
-                                <h:selectBooleanCheckbox value = "teminos" /> Acepto las condiciones y términos generales.
+                                <h:selectBooleanCheckbox value ="#{apadrinarB.check}" />
+                                Acepto las <h:link value="condiciones y términos generales" outcome="condiciones.xhtml" />  y <h:link value="la política de protección de datos" outcome="proteccion.xhtml" />.
                             </div>
                             
                         </h:form>
-                    </div>
+                                               
+                    </div>               
             
              </center>
                 
@@ -76,7 +77,7 @@
             <c:otherwise>
                 <div class="contenido_apadrina">
                     <center>
-                         <h3>Si desea colaborar debe <a href="registro.xhtml">registrarse</a> o <a href="login.xhtml">logearse</a> en la pagina.Muchas gracias</h3>
+                        <h3>Si desea colaborar debe <h:link value="registrarse" outcome="registro.xhtml" /> o <h:link value="logearse" outcome="login.xhtml" /> en la pagina.Muchas gracias</h3>
                     </center>
                     
                  </div>

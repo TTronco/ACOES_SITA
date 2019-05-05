@@ -69,11 +69,15 @@ public class Niño implements Serializable {
     public Niño() {
     }
 
-    public Niño(String nombre, String apellidos,String apell, List<Apadrinar> apadrinarList) {
+    public Niño(String nombre, String apellidos, String apellido2, List<Apadrinar> apadrinarList) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.apellido2 = apell;
+        this.apellido2 = apellido2;
         this.apadrinarList = apadrinarList;
+    }
+
+    public Niño(String nombre) {
+        this.nombre = nombre;
     }
     
     
