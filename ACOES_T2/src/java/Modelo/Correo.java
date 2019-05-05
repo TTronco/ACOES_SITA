@@ -32,8 +32,6 @@ public class Correo implements Serializable {
     
     private boolean valido;
     private Date fecha_envio;
-    private Date fecha_llegada;
-    private String estado_envio;
     
     @ManyToOne
     private Usuario user;
@@ -125,24 +123,7 @@ public class Correo implements Serializable {
         this.fecha_envio = fecha_envio;
     }
 
-    public Date getFecha_llegada() {
-        return fecha_llegada;
-    }
-
-    public void setFecha_llegada(Date fecha_llegada) {
-        this.fecha_llegada = fecha_llegada;
-    }
-
-    public String getEstado_envio() {
-        return estado_envio;
-    }
-
-    public void setEstado_envio(String estado_envio) {
-        this.estado_envio = estado_envio;
-    }
-
-    
-    
+     
     @Override
     public int hashCode() {
         int hash = 0;
