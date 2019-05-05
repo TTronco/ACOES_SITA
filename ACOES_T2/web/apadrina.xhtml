@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;"> 
+]>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/WEB-INF/templates/menu.xhtml"
@@ -54,8 +56,9 @@
                                 </div>
                                 
                                 <tr>
-                                    <td colspan="2" class="FormularioApadrinar">
-                                        <h:commandButton value="Enviar Petición" action="#{apadrinarB.notificar()}" onclick="if(!confirm('¿Estas seguro?')) return false"/>
+                                    <td colspan="2" >
+                                        <h:commandButton class="FormularioApadrinar" value="Enviar Petición" action="#{apadrinarB.notificar()}" onclick="if(!confirm('¿Estas seguro?')) return false"/>
+                                        &nbsp;<h:commandButton class="FormularioApadrinar" value="Desapadrinar" action="#{apadrinarB.desapadrinar(true)}" onclick="if(!confirm('¿Estas seguro?')) return false"/>
                                     </td>
                                 </tr>
                                                                 

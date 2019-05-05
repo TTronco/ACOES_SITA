@@ -137,7 +137,7 @@ body{
 .area{
     margin-top: 2%;
     width: 1300px;
-    height: 300px;
+    height: 200px;
 }
 
 #footer{
@@ -180,10 +180,9 @@ body{
 .FormularioApadrinar{
     font-size: 20px;
     font-family: arial, verdana;
-    padding-left: 40%;
-    padding-right: 40%;
     padding-bottom: 1%;
     padding-top: 1%;
+    margin-top: 5%;
 }
 
 .BotonAceptarCondiciones{

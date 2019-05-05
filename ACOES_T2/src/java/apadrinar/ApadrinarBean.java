@@ -179,4 +179,11 @@ public class ApadrinarBean {
         return null;
     }
     
+    public String desapadrinar(boolean seguro){
+        if(seguro){
+            return "index.xhtml";
+        }else{
+            return null;
+        }
+    }
 }

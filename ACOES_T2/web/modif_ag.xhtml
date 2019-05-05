@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;"> 
+]>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/WEB-INF/templates/menu.xhtml"
@@ -108,7 +110,7 @@
                                       <h:message for="ed" class="error_editarperfil"/>
                                   </center>
                                </td>
-                           </tr>
+                        </tr>
                    </h:form>
 
 
@@ -204,6 +206,8 @@
                                   <center>
                                       <h:commandButton id="ed" value="Editar Perfil" action="#{EditarPerfil.EditarPerfil}" style="font-size: 20px"/>
                                       <h:message for="ed" class="error_editarperfil"/>
+                                      &nbsp;<h:commandButton id="eu" value="Eliminar Usuario" onclick="if(!confirm('¿Estas seguro?')) return false" action="#{controlAutorizacion.logout()}" style="font-size: 20px"/>
+                                      <h:message for="eu" class="error_editarperfil"/>
                                   </center>
                                </td>
                            </tr>
