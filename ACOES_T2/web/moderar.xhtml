@@ -3,7 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns ="http://www.w3.org/1999/xhtml"
                 xmlns:f = "http://java.sun.com/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">>
     
     <ui:define name="titulo">Moderar</ui:define>   
     <ui:define name="contenido">
@@ -44,17 +44,8 @@
                            <h:outputText value="Válido" rendered="#{correos.valido}" style="color:green"></h:outputText>
                            <h:outputText value="Rechazado" rendered="#{!correos.valido and correos.moderado}" style="color:red"></h:outputText>
                         </h:column>
-                        
-                        <h:column>
-                           <f:facet name = "header">Contenido</f:facet>
-                           <h:commandLink value="Leer" 
-                                          rendered="#{correos.tipo eq 'Carta'}" 
-                                          action="#{ModerarCorreo.mostrarContenido(correos)}">
-                           </h:commandLink>
-                        </h:column>
-   
-                    </h:dataTable>
 
+                    </h:dataTable>
                 </h:form>
             </c:when>
             <c:otherwise>

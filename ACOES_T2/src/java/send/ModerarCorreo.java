@@ -15,30 +15,28 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+
+
 
 @Named(value = "ModerarCorreo")
 @SessionScoped
 public class ModerarCorreo implements Serializable{
 
     private List<Correo> correos;
-    private String contenido;
     
     /**
      * Simulates a mail database
      */
     public ModerarCorreo() {
         correos = new ArrayList<Correo>();
-        correos.add(new Correo(1, "Carta", false, "Hola Manolo, te enviamos comida y unos libros."));
+        correos.add(new Correo(1, "Carta", false, "carta"));
         correos.add(new Correo(2, "Paquete", false, "ropa"));
-        correos.add(new Correo(3, "Carta", false, 
-                "Cómo estás Pepe? Te enviamos ropa."
-                        + "hghkabsdjkbas aschchalkassc asjljjhas "
-                        + "ajssbjkabsccs askjbkjassb asskjkjas "
-                        + "kjkahssjbas asiuasbccuiasc assiubcuiasbcca asiuccui uasbscuib"
-                        + "aabidbcuiabccuias iuaubiucbassc"));
+        correos.add(new Correo(3, "Paquete", false, "comida"));
     }
     
     // Getter and Setters
@@ -49,16 +47,6 @@ public class ModerarCorreo implements Serializable{
     public void setCorreos(List<Correo> correos) {
         this.correos = correos;
     }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
-    
-    
     
     /**
      * @return the number of mails that have not been moderated
@@ -91,10 +79,5 @@ public class ModerarCorreo implements Serializable{
         ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
                 "El correo con código " + selectedCorreo.getCodigo() + 
                         " ha sido rechazado", null));
-    }
-    
-    public String mostrarContenido(Correo selectedCorreo){
-        this.contenido = selectedCorreo.getContenido();
-        return "contenidoCarta";
     }
 }
