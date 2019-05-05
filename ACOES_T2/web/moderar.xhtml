@@ -1,51 +1,67 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/WEB-INF/templates/menu_agente.xhtml"
+                template="/WEB-INF/templates/menu.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns ="http://www.w3.org/1999/xhtml"
                 xmlns:f = "http://java.sun.com/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">>
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <ui:define name="titulo">Moderar</ui:define>   
     <ui:define name="contenido">
+        <c:choose>
+            <c:when test="#{!empty controlAutorizacion.agente}">
+                <h:form id="ModerarCorreo">
+                    <h3>Tiene <h:outputText value="#{ModerarCorreo.notificaciones()}"/> envíos de correo pendientes de moderación</h3>
+
+                    <h:dataTable value="#{ModerarCorreo.correos}" var="correos"
+                                styleClass = "correoTable"
+                                headerClass = "correoTableHeader"
+                                rowClasses = "correoTableOddRow, correoTableEvenRow">
+
+                        <h:column>    				
+                            <f:facet name = "header">Identificador</f:facet>    				
+                            #{correos.codigo}
+                        </h:column>
+
+                        <h:column>    				
+                            <f:facet name = "header">Tipo</f:facet>    				
+                            #{correos.tipo}
+                        </h:column>
+
+                        <h:column>
+                           <f:facet name = "header">Moderado</f:facet>
+                           <h:outputText value="#{correos.moderado ? 'Sí' : 'No'}"></h:outputText>
+                        </h:column>
+
+                        <h:column>
+                           <f:facet name = "header">Acción</f:facet>
+                           <h:commandButton value="Validar" action="#{ModerarCorreo.validar(correos)}"/>
+                           <h:commandButton value="Rechazar" action="#{ModerarCorreo.rechazar(correos)}"/>
+                        </h:column>
+
+                        <h:column>
+                           <f:facet name = "header">Estado</f:facet>
+                           <h:outputText value="Pendiente" rendered="#{!correos.moderado}" style="color:coral"></h:outputText>
+                           <h:outputText value="Válido" rendered="#{correos.valido}" style="color:green"></h:outputText>
+                           <h:outputText value="Rechazado" rendered="#{!correos.valido and correos.moderado}" style="color:red"></h:outputText>
+                        </h:column>
+                        
+                        <h:column>
+                           <f:facet name = "header">Contenido</f:facet>
+                           <h:commandLink value="Leer" 
+                                          rendered="#{correos.tipo eq 'Carta'}" 
+                                          action="#{ModerarCorreo.mostrarContenido(correos)}">
+                           </h:commandLink>
+                        </h:column>
+   
+                    </h:dataTable>
+
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                <p> Acceso no autorizado </p>
+            </c:otherwise>
+        </c:choose>
         
-        <h:form id="ModerarCorreo">
-            <h3>Tiene <h:outputText value="#{ModerarCorreo.notificaciones()}"/> envíos de correo pendientes de moderación</h3>
-            
-            <h:dataTable value="#{ModerarCorreo.correos}" var="correos"
-                        styleClass = "correoTable"
-                        headerClass = "correoTableHeader"
-                        rowClasses = "correoTableOddRow, correoTableEvenRow">
-                
-                <h:column>    				
-                    <f:facet name = "header">Identificador</f:facet>    				
-                    #{correos.codigo}
-                </h:column>
-   
-                <h:column>    				
-                    <f:facet name = "header">Tipo</f:facet>    				
-                    #{correos.tipo}
-                </h:column>
-   
-                <h:column>
-                   <f:facet name = "header">Moderado</f:facet>
-                   <h:outputText value="#{correos.moderado ? 'Sí' : 'No'}"></h:outputText>
-                </h:column>
-                
-                <h:column>
-                   <f:facet name = "header">Acción</f:facet>
-                   <h:commandButton value="Validar" action="#{ModerarCorreo.validar(correos)}"/>
-                   <h:commandButton value="Rechazar" action="#{ModerarCorreo.rechazar(correos)}"/>
-                </h:column>
-                
-                <h:column>
-                   <f:facet name = "header">Estado</f:facet>
-                   <h:outputText value="Pendiente" rendered="#{!correos.moderado}" style="color:coral"></h:outputText>
-                   <h:outputText value="Válido" rendered="#{correos.valido}" style="color:green"></h:outputText>
-                   <h:outputText value="Rechazado" rendered="#{!correos.valido and correos.moderado}" style="color:red"></h:outputText>
-                </h:column>
-                       
-            </h:dataTable>
-        </h:form>
         
     </ui:define>
 
