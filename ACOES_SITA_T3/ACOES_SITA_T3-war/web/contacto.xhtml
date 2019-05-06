@@ -1,0 +1,38 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/menu.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml">
+    
+    <ui:define name="titulo">
+        Contacto
+    </ui:define>   
+    
+    <ui:define name="contenido">
+        
+        <br></br>
+        
+        <div class="about_box">
+            <h1 style="text-align: center; color: white; font-size: 40px">
+                <a href="https://www.google.com/maps/dir//como+llegar+casa+cural+de+la+colonia+monterrey+tegucigalpa/@20.497729,-83.8542066,3z/data=!4m8!4m7!1m0!1m5!1m1!1s0x8f6fbd170f2d9275:0x55ec26b2769ecd32!2m2!1d-87.193971!2d14.057495">
+                    <h:graphicImage class="imagenHonduras"  value="#{resource['map.PNG']}" width="50%" height="50%"/>
+                </a>
+            </h1>
+                
+            <p ALIGN="justify" style="color:white">
+                Hoy en día, ACOES cuenta con su sede en Honduras. Hay 24 asociaciones en toda España,  una en Alemania y voluntarios de Francia y Canadá que apoyan el trabajo que se realiza en Honduras. Si quieres conocer los proyectos o colaborar de alguna manera con la organización no dudes en contactar con nosotros.
+            </p>
+            
+            <p ALIGN="justify" style="color:white">
+                Sede en Honduras:<br/>
+                - Dirección: Casa cural de la colonia Monterrey, Bloque F, casa 10, contigua a la Parroquia Madre Teresa de Calcuta<br/>
+                - Código Postal: 5973, Tegucigalpa, Honduras<br/>
+                - Teléfonos: +504 2245-6657, +504 2245-0654<br/>
+                - Email: honduras@acoes.org</p>
+            
+        </div>
+        
+        <br></br>
+        
+    </ui:define>
+
+</ui:composition>

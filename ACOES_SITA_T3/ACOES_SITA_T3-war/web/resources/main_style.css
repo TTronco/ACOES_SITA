@@ -1,0 +1,284 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-abr-2019, 18:24:20
+    Author     : imanb
+*/
+
+body{
+    background: #c9f5e5;
+}
+
+.titulo{
+    font-size: 40px;
+    color: darkblue;
+    text-decoration: none;
+    text-align: center;
+    font-family: arial, verdana;
+}
+#menu ul {
+    font-size: 20px;
+    font-family: "Times New Roman";
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    background: white;
+    border-bottom:0.1em solid black; 
+    border-top: 0.1em solid black; 
+}
+
+#menu li {  
+    font-size: 20px;
+    font-family: "Times New Roman";
+    overflow: hidden;
+    text-align: center;    
+    display: inline-block;    
+    width: calc(145% / 9); /* añade esto, se divide por 6 porque hay 6 elementos */
+}
+
+#menu li a:link{
+    font-family: "Times New Roman";
+    font-size: 38px;
+    color: darkblue;
+    font-weight : bold;
+    text-decoration: none;
+}
+.contenido{
+    font-size: 20px;
+    font-family: arial, verdana;
+    padding-top: 0em;
+    position:relative;
+    font-family: arial, verdana;
+    height: 200px;
+    width: 100%;
+}
+
+.contenido_inicio{
+    font-size: 20px;
+    font-family: arial, verdana;
+    padding-top: 2em;
+    position:relative;
+    font-family: arial, verdana;
+    height: 200px;
+    width: 100%;
+    background-color: deepskyblue;
+}
+/*
+ <!--Estas deben ir en otro css, para no retocar todos los otros xhtml-->
+ 
+*/
+ 
+.mensajeBienvenidaIndex{
+    font-family: arial, verdana;
+    font-size: 40px;
+    padding-left: 22%;
+
+}
+
+.msgReflexivoIndex{
+    font-family: arial, verdana;
+    font-size: 20px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.imagenBienvenidaIndex{
+    font-size: 20px;
+    font-family: arial, verdana;
+    float: right;
+    padding-right: 30%;
+}
+
+.imagenHonduras{
+    font-size: 20px;
+    font-family: arial, verdana;
+    float:left;
+    padding-left: 10%;
+    margin-right: 15px;
+    margin-bottom: 25px;
+}
+
+.otro_contenido{
+    font-size: 20px;
+    font-family: arial, verdana;
+    overflow: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    background:#47c9af;
+}
+
+.apadrina_un_nino{
+    font-size: 20px;
+    font-family: arial, verdana;
+    background: url(ninos.jpg);
+    border: 0.5px solid black;
+    margin-bottom: 2em;
+}
+
+.imagenApadrinarNinoIndex{
+    background: white;
+    opacity: 0.65;
+}
+
+.msgApadrinarNinoIndex{
+    font-family: arial, verdana;
+    font-size: 50px;
+    margin:5%;
+    margin-left: 35%;
+    font-weight: bold;
+    color: black;
+    text-align: match-parent;
+}
+
+.area{
+    margin-top: 2%;
+    width: 1300px;
+    height: 200px;
+}
+
+#footer{
+   font-family: "Times New Roman";
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:35px;
+   width:100%;
+   background:#47c9af;
+   text-align: center;
+   color: grey;
+}
+
+.error_editarperfil{
+    font-size: 20px;
+    font-family: arial, verdana;
+    padding-left: 100px;
+    padding-bottom: 100px;
+}
+
+.about_box{
+    font-family: "Times New Roman";
+    overflow: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    background:#47c9af;
+    padding-right: 5%;
+}
+
+.EditarPerfilEstilo{
+    font-size: 20px;
+    font-family: arial, verdana;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+}
+
+/*Apadrinar*/
+.FormularioApadrinar{
+    font-size: 20px;
+    font-family: arial, verdana;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    margin-top: 5%;
+}
+
+.BotonAceptarCondiciones{
+   /* padding-left: 40%;
+    padding-right: 40%;*/
+    font-style: italic;
+    font-size: 10px;
+    font-family: arial, verdana;
+}
+
+.userypassword{
+     /*padding-left: 40%;
+     padding-right: 40%;
+     padding-bottom: 1%;
+     padding-top: 1%;*/
+     font-size: 20px;
+     font-family: arial, verdana;
+}
+
+/* Registro */
+#registro, #login{
+    font-size: 20px;
+    font-family: arial, verdana;     
+}
+
+.correoTable {
+   font-family: arial, verdana;
+   border-collapse:collapse;
+   border:1px solid #000000;
+   margin: 0 auto;
+}
+
+.correoTableHeader {
+   font-family: arial, verdana;
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.correoTableOddRow {
+   font-family: arial, verdana;
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.correoTableEvenRow {
+   font-family: arial, verdana;
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+
+
+.padrinoTable{
+    font-family: arial, verdana;
+    border-collapse: collapse;
+    border:1px solid #000000;
+    margin: 0 auto; 
+    font-size: 20px;
+}
+
+.padrinoTableHeader{
+   font-family: arial, verdana;
+   text-align:center;
+   background:none repeat scroll 0 0 cyan;
+   border-bottom:2px solid white;  
+   padding:10px;
+}
+
+.padrinoTableOddRow{
+   font-family: arial, verdana;
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.padrinoTableEvenRow {
+   font-family: arial, verdana; 
+   text-align:center;
+   background:none repeat scroll 0 0 black;
+}
+
+.solicitud{
+    font-size: 20px;
+    font-family: arial, verdana;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.solicitudPendiente{
+    font-size: 20px;
+    font-family: arial, verdana;
+    font-size: 20px;
+    margin-left: 10%;
+}
+
+.asignandoNino{
+    width: 20%;
+    padding-left: 50%;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="DBP" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>acoes.Agente</class>
+    <class>acoes.Apadrinar</class>
+    <class>acoes.Niño</class>
+    <class>acoes.Correo</class>
+    <class>acoes.Usuario</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/acoes"/>
+      <property name="javax.persistence.jdbc.user" value="acoes"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.password" value="acoes"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+       <property name="javax.persistence.schema-generation.scripts.create-target" value="C:\Users\imanb\OneDrive\Documentos\NetBeansProjects\ACOES_SITA_T3\create.sql"/>
+    </properties>
+  </persistence-unit>
+</persistence>
