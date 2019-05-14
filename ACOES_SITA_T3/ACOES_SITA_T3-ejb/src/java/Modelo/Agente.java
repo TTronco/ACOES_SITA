@@ -9,14 +9,20 @@
 package Modelo;
 
 import java.util.List;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import static javax.persistence.DiscriminatorType.STRING;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQuery;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="DISC", discriminatorType=STRING)
 @DiscriminatorValue("AG")
+@NamedQuery(name = "findAgente", query="SELECT u FROM Agente u where u.usuario = :fuser and u.contrasenia= :fpass")
 public class Agente extends Usuario {
 
     private static final long serialVersionUID = 1L;

@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 
 import javax.persistence.Entity;
 
@@ -33,6 +34,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import javax.persistence.OneToMany;
 
@@ -45,6 +48,11 @@ import javax.persistence.TemporalType;
  
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findUserName", query="SELECT upper(u.usuario) FROM Usuario u "),
+    @NamedQuery(name = "findUserAll", query="SELECT u FROM Usuario u "),
+    @NamedQuery(name = "findUser", query="SELECT u FROM Usuario u where u.usuario = :fuser and u.contrasenia= :fpass ")    
+})
 
 public class Usuario implements Serializable {
 
@@ -53,9 +61,8 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     protected Integer numSocio;   
 
     

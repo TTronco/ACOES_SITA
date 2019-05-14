@@ -5,14 +5,10 @@
  */
 package negocio.registro;
 
-import Modelo.Usuario;
-import javax.ejb.Local;
-
 /**
  *
  * @author imanb
  */
-@Local
-public interface RegistroNegocioLocal {
-    public void registrarUsuario(Usuario u)throws CuentaException;
+public class CheckException extends CuentaException{
+    
 }

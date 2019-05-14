@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -22,7 +23,12 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
+import negocio.registro.CheckException;
+import negocio.registro.CuentaException;
+import negocio.registro.CuentaRepetidaException;
+import negocio.registro.RegistroNegocio;
+import negocio.registro.RegistroNegocioLocal;
+import java.util.Random;
 
 @Named(value = "registro")
 @RequestScoped
@@ -35,9 +41,10 @@ public class Registro{
     private List<Usuario> usuarios;
     boolean reg_ok;
     
-    @Inject
-    private ControlAutorizacion ctrl;
+   
     
+    @EJB
+    private RegistroNegocioLocal negocio;
     /**
      * Creates a new instance of Registro
      */
@@ -45,6 +52,10 @@ public class Registro{
         
         // 1. Inicializamos a modo ficticio los usuarios que están ya creados y registrados.
         nuevo = new Usuario();
+       
+        Random r = new Random(); int num = r.nextInt(100000);
+        //nuevo.setNumSocio(num);
+        
         usuarios = new ArrayList<Usuario>(); 
         usuarios.add(new Usuario("normal", "pw"));
         usuarios.add(new Usuario("u1", "pw"));
@@ -94,56 +105,46 @@ public class Registro{
         this.reg_ok = reg_ok;
     }
 
-    public ControlAutorizacion getCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(ControlAutorizacion ctrl) {
-        this.ctrl = ctrl;
-    }
+ 
     
  
     
     public String registrarse(){ 
-        FacesContext ctx = FacesContext.getCurrentInstance();
         FacesMessage fm = null;
-        //1. Verificar que el nombre de usuario introducido no existe ya.
-        boolean exists = false;
-        for(Usuario u: usuarios){
-           if(nuevo.getUsuario().equals(u.getUsuario())){
-                    exists = true;
-                    break;
-           }
-        }
-        if(exists){
-            fm = new FacesMessage("El nombre de usuario introducido ya existe.");
-            ctx.addMessage("Nombre usuario >", fm);
-        }
-        //2. Verificar que la contraseña se ha introducido bien.
-        boolean pw_ok = true;
-         if (!nuevo.getContrasenia().equals(repass)) {
-            pw_ok = false;
-            fm = new FacesMessage("Las contraseñas deben coincidir.");
-            ctx.addMessage("Repita contraseña >", fm);
+         try {
+            if (!nuevo.getContrasenia().equals(repass)) {
+                // Comprobar que se ha introducido bien la contraseña
+                fm = new FacesMessage("Las contraseñas deben coincidir");
+                FacesContext.getCurrentInstance().addMessage("registro:repass", fm);
+                return null;
+            }
             
-         }
-        //3. Verificar que se han aceptado los términos.
-        if(!check){
+            //Verificar que se han aceptado los términos.
+            if(!check){
+                throw new CheckException();                
+            }
+            
+            negocio.registrarUsuario(nuevo);
+            reg_ok = true;
+            return "exitoRegistro.xhtml";
+            
+        } catch (CuentaRepetidaException e) {
+            fm = new FacesMessage("El nombre de usuario introducido ya existe.");
+            FacesContext.getCurrentInstance().addMessage("registro:user", fm);
+            
+        } catch (CheckException e){
             fm = new FacesMessage("Debe aceptar los términos y condiciones.");
-            ctx.addMessage("registro:check", fm);
+            FacesContext.getCurrentInstance().addMessage("registro:check", fm);
+        }catch (CuentaException e) {
         }
+        return null;
+                
+        
+        
             
        
-       // Creamos al usuario en caso de que se cumplan las condiciones adecuadas.
-       if(!exists && check && pw_ok){          
-           usuarios.add(nuevo);
-           reg_ok= true;
-       }else{
-           reg_ok = false;
-           return null;
-       }
-        
-       return "exitoRegistro.xhtml";
+       
+       
     }
 }
 
