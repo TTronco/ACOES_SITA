@@ -23,4 +23,5 @@ public interface RegistroNegocioLocal {
     public Agente refrescarAgente(Agente a, String ant_user, String ant_pass) throws CuentaException;
     public void modificarUsuario(Usuario u, String ant_user, String ant_pass) throws CuentaException;
     public void modificarAgente(Agente a, String ant_user, String ant_pass) throws CuentaException;
+    public void eliminarUsuario(Usuario u) throws CuentaException;
 }

@@ -251,4 +251,27 @@ public class ModificarUsuario{
                        
         return null;
     }
+    
+     public String eliminarUsuario(){
+        FacesMessage fm = null;
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
+         try{
+             if(ctrl.getUsuario() != null){
+             Usuario u = ctrl.getUsuario();
+             ctrl.logout();
+             negocio.eliminarUsuario(u);
+             return "index.xhtml";
+         }
+         }catch(CuentaException e){
+            fm = new FacesMessage("Ha habido un problema al eliminar su usuario. ");
+            ctx.addMessage("", fm);
+         }
+         
+         
+        return null;
+    }
 }
+
+   
+

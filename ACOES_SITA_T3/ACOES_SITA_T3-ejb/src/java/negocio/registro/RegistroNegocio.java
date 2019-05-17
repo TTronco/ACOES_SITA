@@ -39,21 +39,27 @@ public class RegistroNegocio implements RegistroNegocioLocal {
         
         em.persist(u);  
     }
+    
     @Override
     public void crearAgente(){
         //Método para crear agentes. Va a haber una serie de agentes predefinidos. Para añadir más agentes, crear objetos de clase Agente y persistirlos.
         //Los agentes no se pueden registrar, son creados por ACOES.
         
-        Agente a1 = new Agente("agente", "pw"); em.persist(a1);
-        Agente a2 = new Agente("iman", "pw"); em.persist(a2);
-        Agente a3 = new Agente("tarun", "pw"); em.persist(a3);
-        Agente a4 = new Agente("antonio", "pw"); em.persist(a4);
+        List<String> list_users = em.createNamedQuery("findUserName").getResultList();
+        if(!list_users.contains("agente".toUpperCase())){
+            Agente a1 = new Agente("agente", "pw"); em.persist(a1);
+            Agente a2 = new Agente("iman", "pw"); em.persist(a2);
+            Agente a3 = new Agente("tarun", "pw"); em.persist(a3);
+            Agente a4 = new Agente("antonio", "pw"); em.persist(a4);
+
+            em.flush();
+
+            // Creamos un usuario normal por defecto para pruebas.
+            Usuario u = new Usuario("normal", "pw");
+            em.persist(u); em.flush();
+        }
         
-        em.flush();
         
-        // Creamos un usuario normal por defecto para pruebas.
-        Usuario u = new Usuario("normal", "pw");
-        em.persist(u); em.flush();
         
     }
     @Override
@@ -94,10 +100,7 @@ public class RegistroNegocio implements RegistroNegocioLocal {
             Usuario user = em.find(Usuario.class, u.getNumSocio());
             
             if(user == null)
-                throw new CuentaInexistenteException();
-                        
-            
-            
+                throw new CuentaInexistenteException();            
             
             em.refresh(em.merge(u));
             return u;
@@ -148,6 +151,14 @@ public class RegistroNegocio implements RegistroNegocioLocal {
         if(list_users.contains(a.getUsuario().toUpperCase()) && !ant_user.equalsIgnoreCase(a.getUsuario()))
                 throw new CuentaRepetidaException();
         em.merge(a);
+        
+    }
+    
+    @Override
+    public void eliminarUsuario(Usuario u) throws CuentaException{
+        Usuario user = em.find(Usuario.class, u.getNumSocio());
+        compruebaLoginNormal(user.getUsuario(), user.getContrasenia());        
+        em.remove(em.merge(user));       
         
     }
     

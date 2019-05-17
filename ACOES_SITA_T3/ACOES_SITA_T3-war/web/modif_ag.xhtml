@@ -206,7 +206,7 @@
                                   <center>
                                       <h:commandButton id="ed" value="Editar Perfil" action="#{EditarPerfil.EditarPerfil}" style="font-size: 20px"/>
                                       <h:message for="ed" class="error_editarperfil"/>
-                                      &nbsp;<h:commandButton id="eu" value="Eliminar Usuario" onclick="if(!confirm('¿Estas seguro?')) return false" action="#{controlAutorizacion.logout()}" style="font-size: 20px"/>
+                                      &nbsp;<h:commandButton id="eu" value="Eliminar Usuario" onclick="if(!confirm('¿Estas seguro?')) return false" action="#{EditarPerfil.eliminarUsuario}" style="font-size: 20px"/>
                                       <h:message for="eu" class="error_editarperfil"/>
                                   </center>
                                </td>
