@@ -12,6 +12,8 @@ import Modelo.Usuario;
 import Modelo.Agente;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -20,7 +22,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import negocio.login.LoginNegocioLocal;
 import negocio.registro.CuentaException;
+import negocio.registro.CuentaInvalidaAgenteException;
 import negocio.registro.CuentaInvalidaException;
+import negocio.registro.RegistroNegocioLocal;
 
 @Named(value = "login")
 @RequestScoped
@@ -35,7 +39,7 @@ public class Login {
     private ControlAutorizacion ctrl;
     
     @EJB
-    private LoginNegocioLocal negocio;
+    private RegistroNegocioLocal negocio;
     
     
     public Login() {
@@ -66,33 +70,31 @@ public class Login {
         // Comprobar si es un agente
         FacesMessage fm = null;
         try{
-            //Comprobamos que el usuario que se conecta es normal
-            Usuario u = negocio.compruebaLoginNormal(usuario, contrasenia);   
+            //Comprobamos si el usuario que se conecta es un agente.
+            Agente a = negocio.compruebaLoginAg(usuario, contrasenia);
             ok = true;
-            ctrl.setUsuario(negocio.refrescarUsuario(u));            
-            ctrl.setAg(false);
+            ctrl.setAg(true);
+            ctrl.setAgente(negocio.refrescarAgente(a, a.getUsuario(), a.getContrasenia()));
             return ctrl.home();
-        }catch (CuentaInvalidaException e){
-            // Quien se conecta o usa valores de autenticación incorrectos, o es un agente.
+        }catch (CuentaInvalidaAgenteException e){
+            // Quien se conecta o usa valores de autenticación incorrectos, o es un usuario.
+            Usuario u;   
+            try {
+                u = negocio.compruebaLoginNormal(usuario, contrasenia);
+                ok = true;
+                ctrl.setUsuario(negocio.refrescarUsuario(u, u.getUsuario(), u.getContrasenia()));            
+                ctrl.setAg(false);
+                return ctrl.home();
+            } catch (CuentaInvalidaException ex) {
+               // Quien se conecta o usa valores de autenticación incorrectos.
+                fm = new FacesMessage("Usuario u contraseña incorrectos.");
+                FacesContext.getCurrentInstance().addMessage("registro:user", fm);
+            } catch (CuentaException ex){
+                
+            }
             
         }catch(CuentaException e){
             
-        }finally{
-            try{
-                Agente a = negocio.compruebaLoginAg(usuario, contrasenia);
-                ok = true;
-                ctrl.setAg(true);
-                ctrl.setAgente((Agente) negocio.refrescarUsuario(a));
-            }catch (CuentaInvalidaException e){
-                if(!ok){
-                    // Quien se conecta o usa valores de autenticación incorrectos.
-                    fm = new FacesMessage("Usuario u contraseña incorrectos.");
-                    FacesContext.getCurrentInstance().addMessage("registro:user", fm);
-                }
-                    
-            }catch(CuentaException e){
-
-            }
         }
                 
        return null;

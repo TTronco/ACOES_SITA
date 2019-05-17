@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import negocio.registro.CuentaException;
 import negocio.registro.CuentaInexistenteException;
+import negocio.registro.CuentaInvalidaAgenteException;
 import negocio.registro.CuentaInvalidaException;
 
 /**
@@ -52,7 +53,9 @@ public class LoginNegocio implements LoginNegocioLocal {
         q.setParameter("fpass", password);
         List<Usuario> us =  q.getResultList();
         
+        
         if(us.isEmpty()){
+           
             throw new CuentaInvalidaException();
         }
         
@@ -69,26 +72,67 @@ public class LoginNegocio implements LoginNegocioLocal {
         List<Agente> ag =  q.getResultList();
         
         if(ag.isEmpty()){
-            throw new CuentaInvalidaException();
+            throw new CuentaInvalidaAgenteException();
         }        
         return ag.get(0);
     }
     
-     @Override
-    public Usuario refrescarUsuario(Usuario u) throws CuentaException {
-        try{
-            compruebaLoginNormal(u.getUsuario(), u.getContrasenia());
-            compruebaLoginAg(u.getUsuario(), u.getContrasenia());            
-        }catch(CuentaInvalidaException e){
+    @Override
+    public Usuario refrescarUsuario(Usuario u, String ant_user, String ant_pass) throws CuentaException {
+        
+        ;   
+        if(u.getNumSocio() != null){ 
+            Usuario user = em.find(Usuario.class, u.getNumSocio());
             
+            if(user == null){
+                throw new CuentaInexistenteException();
+            }
+            u.setNif("467986");
+            em.refresh(em.merge(u));
+            return u;
+        }else{
+            Usuario user = compruebaLoginNormal(ant_user, ant_pass);
+            em.refresh(em.merge(user));
+            return user;
         }
-                
-        Usuario user = em.find(Usuario.class, u.getNumSocio());
-        em.refresh(user);
-        return user;
+        
+        
     }
-
+    @Override
+    public Agente refrescarAgente(Agente a, String ant_user, String ant_pass) throws CuentaException {
+        
+         
+        
+        if(a.getNumSocio() != null){
+            Agente ag = em.find(Agente.class, a.getNumSocio());
+            if(ag == null){
+                throw new CuentaInexistenteException();
+            }
+            em.refresh(a);
+            return a;
+        }else{
+            Agente ag = compruebaLoginAg(ant_user, ant_pass); 
+            em.refresh(ag);
+            return ag;
+        }
+           
+    }
     
-
+    @Override
+    public void modificarUsuario(Usuario u, String ant_user, String ant_pass) throws CuentaException{
+        
+        Usuario user = compruebaLoginNormal(ant_user, ant_pass); 
+        user.setNumSocio(u.getNumSocio());
+        em.merge(u);
+        
+    }
     
+    @Override
+    public void modificarAgente(Agente a, String ant_user, String ant_pass) throws CuentaException{
+        
+        Agente ag = compruebaLoginAg(ant_user, ant_pass); 
+        ag.setNumSocio(a.getNumSocio());
+        em.merge(a);
+        
+    }
 }
