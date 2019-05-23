@@ -16,10 +16,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name = "findApadrinar", query="SELECT ap FROM Apadrinar ap"),
+@NamedQuery(name = "findSolicitantes", query="SELECT ap.usuarioNumSocio FROM Apadrinar ap where ap.niñoCodigo is null"),
+@NamedQuery(name = "findNinios", query = "SELECT ap.niñoCodigo FROM Apadrinar ap where ap.usuarioNumSocio is null"),
+@NamedQuery(name = "findPeticiones", query = "SELECT ap FROM Apadrinar ap where ap.usuarioNumSocio is null or ap.niñoCodigo is null "),
+@NamedQuery(name = "findUserApList", query="SELECT ap.niñoCodigo FROM Apadrinar ap where ap.usuarioNumSocio.numSocio = :fsocio and ap.niñoCodigo is not null")
+})
 public class Apadrinar implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,12 +47,12 @@ public class Apadrinar implements Serializable {
     private Date fecha_fin;
      
    
-    @JoinColumn(name = "niño_codigo",nullable = false)
-    @ManyToOne (optional = false)
+    @JoinColumn(name = "niño_codigo", nullable=true)
+    @ManyToOne (optional = true)
     private Niño niñoCodigo;
     
-    @JoinColumn(name = "usuario_numSocio", nullable = false)
-    @ManyToOne (optional = false)
+    @JoinColumn(name = "usuario_numSocio", nullable=true)
+    @ManyToOne (optional = true)
     private Usuario usuarioNumSocio;
     
     //Constructors
@@ -57,6 +66,19 @@ public class Apadrinar implements Serializable {
         this.niñoCodigo = niñoCodigo;
         this.usuarioNumSocio = usuarioNumSocio;
     }
+    
+    public Apadrinar(double donacion, Date fecha_inicio, Usuario usuarioNumSocio) {
+        this.donacion = donacion;
+        this.fecha_inicio = fecha_inicio;        
+        this.usuarioNumSocio = usuarioNumSocio;
+    }
+    
+    public Apadrinar(double donacion, Date fecha_inicio,  Niño niñoCodigo) {
+        this.donacion = donacion;
+        this.fecha_inicio = fecha_inicio;      
+        this.niñoCodigo = niñoCodigo;
+    }
+    
     
     
     
@@ -124,7 +146,7 @@ public class Apadrinar implements Serializable {
             return false;
         }
         Apadrinar other = (Apadrinar) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.getId() != null) || (this.id != null && !this.id.equals(other.getId()))) {
             return false;
         }
         return true;
@@ -132,7 +154,7 @@ public class Apadrinar implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Apadrinar[ id=" + id + " ]";
+        return "entities.Apadrinar[ numSocio=" + id + " ]"; 
     }
     
 }

@@ -6,7 +6,10 @@
 package negocio.registro;
 
 import Modelo.Agente;
+import Modelo.Apadrinar;
+import Modelo.Niño;
 import Modelo.Usuario;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -161,5 +164,7 @@ public class RegistroNegocio implements RegistroNegocioLocal {
         em.remove(em.merge(user));       
         
     }
+    
+    
     
 }

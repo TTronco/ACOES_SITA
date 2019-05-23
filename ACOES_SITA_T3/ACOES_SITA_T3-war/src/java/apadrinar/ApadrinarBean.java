@@ -15,11 +15,18 @@ import autenticacion.ControlAutorizacion;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import negocio.apadrinar.ApadrinamientoNegocioLocal;
+import negocio.apadrinar.ApadrinarException;
+import negocio.apadrinar.ApadrinarNoGestionadoException;
+import negocio.registro.CuentaException;
+import negocio.registro.CuentaInvalidaException;
+import negocio.registro.RegistroNegocioLocal;
 
 @Named(value = "apadrinarB")
 @RequestScoped
@@ -38,29 +45,14 @@ public class ApadrinarBean {
     
     @Inject
     private ControlAutorizacion ctrl;  
-    /**
-     * Creates a new instance of Apadrinar
-     */
+    
+    @EJB
+    private ApadrinamientoNegocioLocal negocio;
+    
+    @EJB
+    private RegistroNegocioLocal neg;
     
     public ApadrinarBean() {
-        
-        // Inicializamos una lista de apadrinar a null, que nos permitirá saber si un niño está apadrinado.
-       
-        List<Apadrinar> apadrinarList= new ArrayList<>();
-        apadrinarList = null;
-        this.ap_lista = apadrinarList;
-        
-        
-        // Creamos una lista de niños que inicialmente no están apadrinados.
-        List<Niño> lista_ninos= new ArrayList<>();
-        Niño n1 = new Niño("Manolo", "Abandonado", "", apadrinarList);
-        Niño n2 = new Niño("Pablo", "Atún", "", apadrinarList);
-        Niño n3 = new Niño("Antonio", "Pérez", "", apadrinarList);
-        Niño n4 = new Niño("Tarun", "Vaca", "", apadrinarList);
-        Niño n5 = new Niño("Iman", "Nevera", "", apadrinarList);
-        lista_ninos.add(n1); lista_ninos.add(n2); lista_ninos.add(n3); lista_ninos.add(n4); lista_ninos.add(n5);
-        this.ninos = lista_ninos;
-        
         
     }
 
@@ -142,10 +134,37 @@ public class ApadrinarBean {
         
         FacesContext ctx = FacesContext.getCurrentInstance();
         FacesMessage fm = null;
-        //1. Doble comprobación de usuario. Si está logeado, sus datos de sesión se mantienen en controlAutorización.
-        if(usuario.equals(ctrl.getUsuario().getUsuario()) && contrasenia.equals(ctrl.getUsuario().getContrasenia())){
+        
+        
+        if(ctrl.getUsuario()!=null){
+            try{
+                //1. Doble comprobación de usuario. Si está logeado, sus datos de sesión se mantienen en controlAutorización.
+                neg.compruebaLoginNormal(usuario, contrasenia);
+
+                // 2. Si todo es correcto, el usuario debe pasar a la lista de usuarios que quieren apadrinar.
+                if(check){                
+                    negocio.solicitudApadrinar(ctrl.getUsuario());
+                    return "gracias.xhtml";
+                }else{
+                    fm = new FacesMessage("Debe aceptar los términos y condiciones.");
+                    ctx.addMessage("apadrinarB:check", fm);                
+                }
+            }catch(CuentaInvalidaException e){
+                fm = new FacesMessage("El usuario o contraseña fueron mal introducidas. ");
+                ctx.addMessage(usuario, fm);
+            }catch(CuentaException e){
+
+            }catch(ApadrinarNoGestionadoException e){
+                fm= new FacesMessage("Tiene aún peticiones de apadrinamiento sin gestionar, espere a que un agente gestione su petición anterior.");
+                ctx.addMessage("", fm);
+            }catch(ApadrinarException e){
+
+            }
+        }
+        
+        return null;
             
-            if(check){
+            /*
                 user = ctrl.getUsuario();
                 //2. Creamos un objeto de apadrinar que aún no está relacionado por ningún niño.
                 Date fecha = new Date();        
@@ -165,18 +184,10 @@ public class ApadrinarBean {
                 // 3. Devolver página.
                
                 return "gracias.xhtml";
-            }else{
-                fm = new FacesMessage("Debe aceptar los términos y condiciones.");
-                ctx.addMessage("apadrinarB:check", fm);
             }
             
-            
-        }else{
-            fm = new FacesMessage("Usuario o contraseña incorrectos. Introdúzcalos de nuevo.");
-            ctx.addMessage("apadrinarB:usuario", fm);            
-        }
-        
-        return null;
+            */
+      
     }
     
     public String desapadrinar(boolean seguro){

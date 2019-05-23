@@ -13,7 +13,7 @@
         <h:form>
             <div>
             <h3 class="solicitud">Solicitudes pendientes: 
-                <h:commandButton class="solicitudPendiente" value="5" action="#{asignarNiñoBean.showMessage()}" /></h3>
+                <h:commandButton class="solicitudPendiente" value="#{asignarNiñoBean.numPeticiones()}" action="#{asignarNiñoBean.showMessage()}" /></h3>
                
                     <h:graphicImage class="asignandoNino" value="#{resource['asignandoNino.jpg']}"/>
           

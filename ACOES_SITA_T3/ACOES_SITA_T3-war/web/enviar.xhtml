@@ -13,28 +13,23 @@
     
     <ui:define name="contenido">
        
-        <center>
-            <h:form>
-                <h:inputTextarea class="area" value="#{enviarBean.correo}"/>
-            </h:form>
-        </center>
-              
         <c:choose>
             <c:when test="#{!empty controlAutorizacion.usuario}">
-               
+                
+                
                 <div class="contenido_apadrina"> </div>  
             
                 <center>
                     <div>
                         <h:form>
+                            <h:inputTextarea class = "area" value="#{enviarBean.correo}" required="true" requiredMessage="Debe introducir un mensaje" />
                             <table>
                                 
                                 <tr>
                                     <td><h4>Niño: </h4></td>
-                                    <td><h:selectOneMenu>
-                                            <c:forEach var="item" items="#{enviarBean.user.apadrinarList}">
-                                                <f:selectItem itemLabel="#{item.niñoCodigo.nombre}"/>
-                                            </c:forEach>                                            
+                                    <td><h:selectOneMenu value="#{enviarBean.selectedItem}">
+                                            <f:selectItems value="#{enviarBean.lista_ninos()}" />
+                                                                                   
                                         </h:selectOneMenu></td>
                                     
                                 </tr>
@@ -54,6 +49,11 @@
             
             <c:otherwise>
                 <center>
+                     
+                    <h:form>
+                        <h:inputTextarea  class = "area" value="Introduzca su mensaje" cols="100" rows="10"/>
+                    </h:form>
+     
                    <h3>Recuerde estar <a href="registro.xhtml">registrado</a> o <a href="login.xhtml">logeado</a> en la página para poder enviar su carta.</h3>
                    <h5>En caso de escribir y logearse luego, se perderá lo escrito.</h5>
                 </center>
@@ -62,7 +62,6 @@
         
         <h:form>
             <marquee direction="RIGHT"><h:graphicImage value="#{resource['Carta.gif']}"/></marquee>
-
         </h:form>
         
         

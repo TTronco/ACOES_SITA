@@ -18,12 +18,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
+@NamedQuery(name = "findKidName", query="SELECT upper(n.nombre) FROM Niño n ")
 public class Niño implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +41,7 @@ public class Niño implements Serializable {
    
     private String estado;
    
-    private Character beca;
+    private boolean beca;
     
     private String sexo;
     
@@ -125,11 +127,11 @@ public class Niño implements Serializable {
         this.estado = estado;
     }
 
-    public Character getBeca() {
+    public boolean getBeca() {
         return beca;
     }
 
-    public void setBeca(Character beca) {
+    public void setBeca(boolean beca) {
         this.beca = beca;
     }
 

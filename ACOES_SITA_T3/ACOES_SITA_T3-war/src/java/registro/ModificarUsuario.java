@@ -21,8 +21,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import negocio.login.LoginNegocio;
-import negocio.login.LoginNegocioLocal;
 import negocio.registro.CuentaException;
 import negocio.registro.CuentaRepetidaException;
 import negocio.registro.RegistroNegocioLocal;

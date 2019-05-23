@@ -13,12 +13,16 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import negocio.apadrinar.ApadrinamientoNegocioLocal;
+import negocio.apadrinar.ApadrinarException;
 
 
 @Named(value = "asignarNiñoBean")
@@ -26,34 +30,35 @@ import javax.inject.Named;
 @SessionScoped
 public class AsignarNiñoBean implements Serializable{
   
-    private List<Apadrinar> apadrinar;
-    private List<Niño> ninos;
-    private List<Usuario> usuarios;
+
     
     private String user;
     private String kid;
     
+   @EJB
+   private ApadrinamientoNegocioLocal negocio;
+   
     public AsignarNiñoBean(){
-        
-        // Lista de usuarios que quieren apadrinar.
-        usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("Pepe", "El chispas", "4545454"));
-        usuarios.add(new Usuario("Manuel", "Dominguez", "3849"));
-        usuarios.add(new Usuario("Manuela", "Piña", "380i9899"));
-        
-        //Lista de niños que esperan ser apadrinados.
-        ninos = new ArrayList<>();
-        ninos.add(new Niño("Manolo")); 
-        ninos.add(new Niño("Pablo")); 
-        
-        Date fecha = new Date();
-        apadrinar = new ArrayList<>(); 
-        apadrinar.add(new Apadrinar(15, fecha, ninos.get(0), null));
-        apadrinar.add(new Apadrinar(15, fecha, ninos.get(1), null));
-        apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(0)));   
-        apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(1)));    
-        apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(2)));    
-        
+        /*
+            // Lista de usuarios que quieren apadrinar.
+            usuarios = new ArrayList<>();
+            usuarios.add(new Usuario("Pepe", "El chispas", "4545454"));
+            usuarios.add(new Usuario("Manuel", "Dominguez", "3849"));
+            usuarios.add(new Usuario("Manuela", "Piña", "380i9899"));
+
+            //Lista de niños que esperan ser apadrinados.
+            ninos = new ArrayList<>();
+            ninos.add(new Niño("Manolo")); 
+            ninos.add(new Niño("Pablo")); 
+            
+            Date fecha = new Date();
+            apadrinar = new ArrayList<>(); 
+            apadrinar.add(new Apadrinar(15, fecha, ninos.get(0), null));
+            apadrinar.add(new Apadrinar(15, fecha, ninos.get(1), null));
+            apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(0)));   
+            apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(1)));    
+            apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(2)));    
+        */
     }
 
     public String getUser() {
@@ -73,45 +78,53 @@ public class AsignarNiñoBean implements Serializable{
     }
     
     
-    public List<Apadrinar> getApadrinados(){
-        return apadrinar;
+    public List<Apadrinar> listaApadrinados(){
+        return negocio.apadrinar();
     }
 
-    public List<Apadrinar> getApadrinar() {
-        return apadrinar;
+    public Map<Usuario,Niño> listaDisponibles(){
+        return negocio.disponiblesAp();
     }
 
-    public void setApadrinar(List<Apadrinar> apadrinar) {
-        this.apadrinar = apadrinar;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public List<Niño> getNinos() {
-        return ninos;
-    }
-
-    public void setNinos(List<Niño> ninos) {
-        this.ninos = ninos;
-    }
     
+    public List<Usuario> usuariosSolicitantes() {
+        // Lista de usuarios que quieren apadrinar
+        System.out.println(negocio.usuariosSolicitantes());
+        return negocio.usuariosSolicitantes();
+    }    
+
+    public List<Niño> niniosDisponibles() {
+        // Lista de niños que esperan ser apadrinados.
+        System.out.println(negocio.niniosDisponibles());
+        return negocio.niniosDisponibles();
+    }  
     
       
     public String showMessage() {
-        
-       return "padrinoNino.xhtml";
+       if(numPeticiones() > 0)
+           return "padrinoNino.xhtml";
+       else
+           return null;
         
     }
     
+    public int numPeticiones(){
+        negocio.crearNiños(); //Inicializar datos niños bd;
+        return negocio.peticiones();
+    }
     
-    public void asignar(Apadrinar ap){
+    public void asignar(Usuario u, Niño n){  
+        FacesMessage fm = null;
+        FacesContext ctx = FacesContext.getCurrentInstance();
         
+        try{
+            negocio.asignar(u, n);
+        }catch(ApadrinarException e){
+            fm = new FacesMessage("Ha habido un problema al asignar, inténtelo de nuevo más tarde.");
+            ctx.addMessage("", fm);
+        }
+        
+        /*
         Usuario u = ap.getUsuarioNumSocio();
         Niño n = ap.getNiñoCodigo();
         
@@ -158,8 +171,12 @@ public class AsignarNiñoBean implements Serializable{
                 "El usuario " + user + " ha sido asignado a " + kid + ".", "El usuario " + user + " ha sido asignado a " + kid + "."));
         
     }    
+        
+        */
+    }    
+    
+    
+    }
+        
 
-}
-/*
-                            <h:commandButton value="Asignar" action="#{asignarNiñoBean.asignar(apadrinar)}"/> 
-*/
+

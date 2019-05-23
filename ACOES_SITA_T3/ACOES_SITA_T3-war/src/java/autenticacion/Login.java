@@ -20,7 +20,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import negocio.login.LoginNegocioLocal;
 import negocio.registro.CuentaException;
 import negocio.registro.CuentaInvalidaAgenteException;
 import negocio.registro.CuentaInvalidaException;

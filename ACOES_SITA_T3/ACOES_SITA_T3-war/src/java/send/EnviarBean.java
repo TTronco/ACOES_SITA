@@ -16,51 +16,39 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import negocio.correo.CorreoException;
+import negocio.correo.ListaVaciaException;
+import negocio.correo.enviarNegocioLocal;
 
 /**
  *
  * @author devna
  */
-@Named(value="enviarBean")
+//@Named(value="enviarBean")
+@ManagedBean(name="enviarBean")
 @RequestScoped
 public class EnviarBean implements Serializable {
 
     private Usuario user;
-    private List<Niño> ninos;
-    private List<Correo> correos;
     private Agente ag;
     
     private String usuario;
     private String nin;
     private String correo;
     
+    private String selectedItem;
+    
     @Inject 
     private ControlAutorizacion ctrl;
     
+    @EJB
+    private enviarNegocioLocal negocio;
+    
     public EnviarBean(){
-        List<Niño> nin = new ArrayList<>();
-        nin = null;
-        this.ninos = nin;
-        List<Apadrinar> apad = new ArrayList<>();
-        apad = null;
-        List<Niño> lista_ninos= new ArrayList<>();
-        Niño n1 = new Niño("Manolo", "Abandonado","",apad);
-        Niño n2 = new Niño("Pablo", "Atún", "",apad);
-        Niño n3 = new Niño("Antonio", "Pérez", "",apad);
-        Niño n4 = new Niño("Tarun", "Vaca", "",apad);
-        Niño n5 = new Niño("Iman", "Nevera", "",apad);
-        lista_ninos.add(n1); lista_ninos.add(n2); lista_ninos.add(n3); lista_ninos.add(n4); lista_ninos.add(n5);
-        this.ninos = lista_ninos;
-        
-        
-        user = new Usuario();
-        Date fecha = new Date();
-        List<Apadrinar> apadrinarList = new ArrayList<>();
-        apadrinarList.add(new Apadrinar(15, fecha, n1, user));
-        apadrinarList.add(new Apadrinar(15, fecha, n2, user));
-
-        user.setApadrinarList(apadrinarList);
         
     }
     
@@ -99,10 +87,42 @@ public class EnviarBean implements Serializable {
     public void setUser(Usuario user) {
         this.user = user;
     }
-    
+
+    public String getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(String selectedItem) {
+        this.selectedItem = selectedItem;
+    }    
+
    
+    
+    
+    public List<String> lista_ninos(){
+        return negocio.lista_ninos(ctrl.getUsuario());
+    }
+    
     public String guardar(){
+        FacesMessage fm = null;
         FacesContext ctx = FacesContext.getCurrentInstance();
+        System.out.println(correo);
+        Correo c = new Correo("Carta", false, correo);
+        Usuario u  = ctrl.getUsuario();
+        
+        try{
+            negocio.guardarCarta(c, selectedItem, u);
+        }catch(ListaVaciaException e){
+            fm = new FacesMessage("No puede enviar ninguna carta, ya que no tiene ningún niño apadrinado. ");
+            ctx.addMessage("", fm);
+            return null;
+        }catch(CorreoException e){
+            fm = new FacesMessage("Error");
+            ctx.addMessage("", fm);
+            return null;
+        }
+        
+        return "graciasEnviarCarta.xhtml"; 
         /*
         boolean ok = false;
         for(Niño n : ninos){
@@ -114,6 +134,8 @@ public class EnviarBean implements Serializable {
         
      //   if(usuario.equals(ctrl.getUsuario().getUsuario())){
         if(ok){*/
+        
+        /*
             user = ctrl.getUsuario();
             
             Correo c = new Correo("",false,correo);
@@ -127,11 +149,12 @@ public class EnviarBean implements Serializable {
             }
             
              return "graciasEnviarCarta.xhtml";           
-        /*}else{
+        }else{
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al enviar la carta. Inténtelo de nuevo","Error al enviar la carta. Inténtelo de nuevo"));
         }
         
-        return null;*/
+        return null;
+        */
     }
     
     public String contenedor(boolean aceptar){
