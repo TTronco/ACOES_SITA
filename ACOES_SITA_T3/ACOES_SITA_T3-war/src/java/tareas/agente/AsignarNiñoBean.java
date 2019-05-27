@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -23,6 +24,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import negocio.apadrinar.ApadrinamientoNegocioLocal;
 import negocio.apadrinar.ApadrinarException;
+import negocio.apadrinar.NiniosNoDisponiblesException;
 
 
 @Named(value = "asignarNiñoBean")
@@ -39,26 +41,7 @@ public class AsignarNiñoBean implements Serializable{
    private ApadrinamientoNegocioLocal negocio;
    
     public AsignarNiñoBean(){
-        /*
-            // Lista de usuarios que quieren apadrinar.
-            usuarios = new ArrayList<>();
-            usuarios.add(new Usuario("Pepe", "El chispas", "4545454"));
-            usuarios.add(new Usuario("Manuel", "Dominguez", "3849"));
-            usuarios.add(new Usuario("Manuela", "Piña", "380i9899"));
-
-            //Lista de niños que esperan ser apadrinados.
-            ninos = new ArrayList<>();
-            ninos.add(new Niño("Manolo")); 
-            ninos.add(new Niño("Pablo")); 
-            
-            Date fecha = new Date();
-            apadrinar = new ArrayList<>(); 
-            apadrinar.add(new Apadrinar(15, fecha, ninos.get(0), null));
-            apadrinar.add(new Apadrinar(15, fecha, ninos.get(1), null));
-            apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(0)));   
-            apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(1)));    
-            apadrinar.add(new Apadrinar(15, fecha, null, usuarios.get(2)));    
-        */
+       
     }
 
     public String getUser() {
@@ -77,29 +60,23 @@ public class AsignarNiñoBean implements Serializable{
         this.kid = kid;
     }
     
-    
-    public List<Apadrinar> listaApadrinados(){
-        return negocio.apadrinar();
-    }
-
+   
     public Map<Usuario,Niño> listaDisponibles(){
-        return negocio.disponiblesAp();
+        Map<Usuario,Niño> result  = new HashMap<>();
+        try{
+            result = negocio.disponiblesAp();
+            return result;
+        }catch(NiniosNoDisponiblesException e){
+            FacesMessage fm = new FacesMessage("No hay niños disponibles para asignar.");
+            FacesContext ctx = FacesContext.getCurrentInstance();     
+            ctx.addMessage("ninio", fm);
+        }catch(ApadrinarException e){
+            
+        }
+        return null;
     }
 
-    
-    public List<Usuario> usuariosSolicitantes() {
-        // Lista de usuarios que quieren apadrinar
-        System.out.println(negocio.usuariosSolicitantes());
-        return negocio.usuariosSolicitantes();
-    }    
-
-    public List<Niño> niniosDisponibles() {
-        // Lista de niños que esperan ser apadrinados.
-        System.out.println(negocio.niniosDisponibles());
-        return negocio.niniosDisponibles();
-    }  
-    
-      
+  
     public String showMessage() {
        if(numPeticiones() > 0)
            return "padrinoNino.xhtml";
@@ -124,55 +101,7 @@ public class AsignarNiñoBean implements Serializable{
             ctx.addMessage("", fm);
         }
         
-        /*
-        Usuario u = ap.getUsuarioNumSocio();
-        Niño n = ap.getNiñoCodigo();
-        
-        if(ap.getUsuarioNumSocio() != null){
-             user = ap.getUsuarioNumSocio().getNombre();
-             apadrinar.remove(ap);
-        }else if(ap.getNiñoCodigo() != null){
-             kid = ap.getNiñoCodigo().getNombre();
-             apadrinar.remove(ap);
-        }        
-        
-        
-        if(u!=null){
-            usuarios.remove(u);
-        }else{        
-           
-            //No hay padrino asociado
-            for(Usuario u1: usuarios){
-                if(u1.getNombre().equals((user))){
-                    usuarios.remove(u1);
-                    break;
-                }
-            }
-        }
-        
-        if(n!= null){
-            ninos.remove(n);
-        }else{
-            
-            for(Niño n1: ninos){
-                if(n1.getNombre().equals(kid)){
-                    ninos.remove(n1);
-                    break;
-                }
-            }           
-                    
-                    
-        }
-           
        
-        
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
-                "El usuario " + user + " ha sido asignado a " + kid + ".", "El usuario " + user + " ha sido asignado a " + kid + "."));
-        
-    }    
-        
-        */
     }    
     
     

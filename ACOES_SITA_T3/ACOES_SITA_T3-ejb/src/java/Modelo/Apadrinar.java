@@ -27,7 +27,9 @@ import javax.persistence.TemporalType;
 @NamedQuery(name = "findSolicitantes", query="SELECT ap.usuarioNumSocio FROM Apadrinar ap where ap.niñoCodigo is null"),
 @NamedQuery(name = "findNinios", query = "SELECT ap.niñoCodigo FROM Apadrinar ap where ap.usuarioNumSocio is null"),
 @NamedQuery(name = "findPeticiones", query = "SELECT ap FROM Apadrinar ap where ap.usuarioNumSocio is null or ap.niñoCodigo is null "),
-@NamedQuery(name = "findUserApList", query="SELECT ap.niñoCodigo FROM Apadrinar ap where ap.usuarioNumSocio.numSocio = :fsocio and ap.niñoCodigo is not null")
+@NamedQuery(name = "findUserApList", query="SELECT ap.niñoCodigo FROM Apadrinar ap where ap.usuarioNumSocio.numSocio = :fsocio and ap.niñoCodigo is not null"),
+@NamedQuery(name = "findSelectedAp", query="SELECT ap FROM Apadrinar ap where ap.usuarioNumSocio.numSocio = :fsocio and ap.niñoCodigo.codigo = :fcodigo")
+
 })
 public class Apadrinar implements Serializable {
 

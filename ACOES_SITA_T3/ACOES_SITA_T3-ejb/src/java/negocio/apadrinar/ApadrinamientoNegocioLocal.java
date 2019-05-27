@@ -20,11 +20,13 @@ import javax.ejb.Local;
 public interface ApadrinamientoNegocioLocal {
     public void crearNiños();
     public int peticiones();
-    public Map<Usuario,Niño> disponiblesAp();
+    public Map<Usuario,Niño> disponiblesAp()  throws ApadrinarException;
     public void solicitudApadrinar (Usuario u) throws ApadrinarException;
     public void asignar(Usuario u, Niño n) throws ApadrinarException;
+    public void desapadrinar(Usuario u) throws ApadrinarException;
+    /*
     public List<Apadrinar> apadrinar();
     public List<Usuario> usuariosSolicitantes();
     public List<Niño> niniosDisponibles();
-    
+    */
 }

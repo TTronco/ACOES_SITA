@@ -255,13 +255,13 @@ body{
 .padrinoTableOddRow{
    font-family: arial, verdana;
    text-align:center;
-   background:none repeat scroll 0 0 #FFFFFFF;	
+   background:none repeat scroll 0 0 #FFFFFF;	
 }
 
 .padrinoTableEvenRow {
    font-family: arial, verdana; 
    text-align:center;
-   background:none repeat scroll 0 0 black;
+   background:none repeat scroll 0 0 #879cbc;
 }
 
 .solicitud{

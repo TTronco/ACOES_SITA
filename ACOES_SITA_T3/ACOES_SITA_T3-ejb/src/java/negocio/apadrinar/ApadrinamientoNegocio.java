@@ -17,6 +17,8 @@ import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import negocio.correo.ListaVaciaException;
 
 /**
  *
@@ -38,12 +40,15 @@ public class ApadrinamientoNegocio implements ApadrinamientoNegocioLocal {
             Niño n1 = new Niño("Manolo"); em.persist(n1); 
             Niño n2 = new Niño("Pablo");  em.persist(n2);
             Niño n3 = new Niño("álvaro"); em.persist(n3);
-
+            Niño n4 = new Niño("Random"); em.persist(n4);
             // Y los ponemos como disponibles.
             Apadrinar a1 = new Apadrinar(15.0, null, n1, null); em.persist(a1);
             Apadrinar a2 = new Apadrinar(15.0, null, n2, null); em.persist(a2);
             Apadrinar a3 = new Apadrinar(15.0, null, n3, null); em.persist(a3);
-        }        
+            Apadrinar a4 = new Apadrinar(15.0, null, n4, null); em.persist(n4);
+        }   
+        
+        
     }
     @Override
     public int peticiones(){
@@ -55,11 +60,14 @@ public class ApadrinamientoNegocio implements ApadrinamientoNegocioLocal {
     }
     
     @Override 
-    public Map<Usuario,Niño> disponiblesAp(){
+    public Map<Usuario,Niño> disponiblesAp() throws ApadrinarException{
         List<Usuario> lista_users = em.createNamedQuery("findSolicitantes").getResultList();    
         List<Niño> lista_ninos = em.createNamedQuery("findNinios").getResultList(); 
-        Map result = new HashMap<Usuario,Niño>();
-        System.out.println(lista_users);
+        Map<Usuario,Niño> result = new HashMap<>();
+        
+        if(lista_ninos.isEmpty())
+            throw new NiniosNoDisponiblesException();
+        
         for(Usuario u : lista_users)
             for(Niño n : lista_ninos)
                 result.put(u, n);
@@ -90,8 +98,7 @@ public class ApadrinamientoNegocio implements ApadrinamientoNegocioLocal {
         
         List<Apadrinar> result = em.createNamedQuery("findPeticiones").getResultList();
         Apadrinar a1 = new Apadrinar();
-        Apadrinar a2 = new Apadrinar();
-        
+                
         for(Apadrinar a: result){
             if(a.getUsuarioNumSocio() != null && a.getUsuarioNumSocio().equals(u) ){              
                 //Definir datos apadrinamiento en la tabla apadrinar.
@@ -110,21 +117,36 @@ public class ApadrinamientoNegocio implements ApadrinamientoNegocioLocal {
         // En la tabla apadrinar solo debe haber 1 fila que contiene la información sobre el apadrinamiento.
         // Actualizar la lista de apadrinamientos del usuario.
         
-        /*
-        List<Apadrinar> lu = u.getApadrinarList();
-        lu.add(a1);
-        u.setApadrinarList(lu);
-        em.refresh(em.merge(u));
-        */
-        // Actualizar la lista de apadrinamientos del usuario.
-       //List<Apadrinar> ln = n.getApadrinarList();
-       // ln.add(a1);
-       // n.setApadrinarList(ln);
+        
         n.setBeca(true);
         em.refresh(em.merge(n));        
         
     }
-    
+    public void desapadrinar(Usuario u) throws ApadrinarException{
+        // Buscamos si el usuario tiene algún niño apadrinado
+        Query q = em.createNamedQuery("findUserApList");
+        q.setParameter("fsocio", u.getNumSocio());       
+        List<Niño> lista =  q.getResultList();
+        
+        if(lista.isEmpty())
+            throw new NiniosNoDisponiblesException();
+        
+        // Hay al menos un niño apadrinado, buscamos al niño y al usuario en la lista de apadrinamiento.        
+        Niño n = lista.get(0);
+        Query q2 = em.createNamedQuery("findSelectedAp");
+        q2.setParameter("fsocio", u.getNumSocio());
+        q2.setParameter("fcodigo", n.getCodigo());
+        List<Apadrinar> ap = q2.getResultList();
+        
+        if(ap.isEmpty())
+            throw new ApadrinarException();
+        
+        // Desapadrinamos.
+        em.remove(ap.get(0));
+        
+        
+    }
+    /*
     @Override 
     public List<Apadrinar> apadrinar(){
         List<Apadrinar> result = em.createNamedQuery("findPeticiones").getResultList();
@@ -141,5 +163,5 @@ public class ApadrinamientoNegocio implements ApadrinamientoNegocioLocal {
         List<Niño> result = em.createNamedQuery("findNinios").getResultList(); 
         return result;
     }
-    
+    */
 }

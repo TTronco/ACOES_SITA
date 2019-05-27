@@ -44,18 +44,10 @@ public class enviarNegocio implements enviarNegocioLocal {
         c.setNene(ninio); c.setUser(u);
         Date hoy = new Date();
         c.setFecha_envio(hoy);
-        
-        List<Correo> lista_correo = u.getCorreoList(); 
-        lista_correo.add(c);
-        u.setCorreoList(lista_correo);
-        
-        lista_correo = ninio.getCorreoList();
-        lista_correo.add(c);
-        ninio.setCorreoList(lista_correo);
+               
         
         em.persist(c);
-        em.refresh(em.merge(ninio));
-        em.refresh(em.merge(u));
+        
         
         
     }

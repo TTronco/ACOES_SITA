@@ -24,6 +24,7 @@ import javax.inject.Inject;
 import negocio.apadrinar.ApadrinamientoNegocioLocal;
 import negocio.apadrinar.ApadrinarException;
 import negocio.apadrinar.ApadrinarNoGestionadoException;
+import negocio.apadrinar.NiniosNoDisponiblesException;
 import negocio.registro.CuentaException;
 import negocio.registro.CuentaInvalidaException;
 import negocio.registro.RegistroNegocioLocal;
@@ -83,7 +84,7 @@ public class ApadrinarBean {
 
    
     
-    
+    /*
     public String consultar(){
         FacesContext ctx = FacesContext.getCurrentInstance();
         if(ctrl.getAgente() != null){
@@ -127,7 +128,7 @@ public class ApadrinarBean {
         }
         return null;
     }
-    
+    */
    
     
     public String notificar(){
@@ -162,37 +163,24 @@ public class ApadrinarBean {
             }
         }
         
-        return null;
-            
-            /*
-                user = ctrl.getUsuario();
-                //2. Creamos un objeto de apadrinar que aún no está relacionado por ningún niño.
-                Date fecha = new Date();        
-                Apadrinar a1 = new Apadrinar(15.0,fecha , null, user);
-                if(user.getApadrinarList() == null){
-                    //primer niño que apadrina.                
-                    List<Apadrinar> apadrinarList= new ArrayList<>();
-                    apadrinarList.add(a1);
-                    user.setApadrinarList(apadrinarList);
-                }else{
-                    // no es el primer niño que apadrina, hay que reutilizar la lista.
-                    user.getApadrinarList().add(a1);
-                }
-
-                // Depende de los agentes lo que queda.           
-
-                // 3. Devolver página.
-               
-                return "gracias.xhtml";
-            }
-            
-            */
-      
+        return null;      
     }
     
     public String desapadrinar(boolean seguro){
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        FacesMessage fm = null;
         if(seguro){
-            return "index.xhtml";
+            try{
+                negocio.desapadrinar(ctrl.getUsuario());
+                return "index.xhtml";
+            }catch(NiniosNoDisponiblesException e){
+                fm = new FacesMessage("No puede desapadrinar si no tiene a ningún niño apadrinado.");
+                ctx.addMessage("", fm);
+            }catch(ApadrinarException e){
+                fm = new FacesMessage("Error inesperado. Inténtelo de nuevo más tarde");
+                ctx.addMessage("", fm);
+            }
+            return null;
         }else{
             return null;
         }
