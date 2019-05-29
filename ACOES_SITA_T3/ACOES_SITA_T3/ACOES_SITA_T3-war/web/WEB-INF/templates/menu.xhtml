@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="resources\main_style.css" rel="stylesheet" type="text/css" />
+        <title>
+            <ui:insert name="titulo">
+                ACOES
+            </ui:insert>
+        </title>
+    </h:head>
+
+    <h:body>
+
+        <header id="cabecera">
+            <ui:insert name="cabecera">
+                <h1 class="titulo">ACOES</h1>
+            </ui:insert>
+        </header>
+
+        <div id="menu">
+            <c:choose>
+                <c:when test="#{!empty controlAutorizacion.agente}">
+
+                        <h:form>
+                        <ul>   
+                            <li><h:commandLink action="index.xhtml" value="Inicio"/></li>                   
+                            <li><h:commandLink action="about.xhtml" value="Conócenos"/></li>  
+                            <li><h:commandLink action="consulta_nino.xhtml" value="Apadrinar"/></li>   
+                            <li><h:commandLink action="moderar.xhtml" value="Moderar"/></li>   
+                            <li><h:commandLink action="enviar_cont.xhtml" value="Enviar"/></li>  
+                            <li><h:commandLink action="contacto.xhtml" value="Contacto"/></li> 
+                            <li><h:commandLink action="modif_ag.xhtml" value="Mi Usuario"/></li>   
+                            <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Logout"/></li>    
+                        </ul> 
+                    </h:form> 
+
+                </c:when>   
+                
+                <c:when test="#{!empty controlAutorizacion.usuario}">
+
+                        <h:form>
+                        <ul>   
+                            <li><h:commandLink action="index.xhtml" value="Inicio"/></li>                   
+                                <li><h:commandLink action="about.xhtml" value="Conócenos"/></li>  
+                                <li><h:commandLink action="apadrina.xhtml" value="Apadrinar"/></li>   
+                                <li><h:commandLink action="enviar.xhtml" value="Enviar"/></li>   
+                                <li><h:commandLink action="contacto.xhtml" value="Contacto"/></li> 
+                                <li><h:commandLink action="modif_ag.xhtml" value="Mi Usuario"/></li>   
+                                <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Logout"/></li>    
+                        </ul> 
+                    </h:form> 
+
+                </c:when>   
+               <c:otherwise>
+                    <h:form>
+                        <ul>                           
+                                <li><h:commandLink action="index.xhtml" value="Inicio"/></li>                   
+                                <li><h:commandLink action="about.xhtml" value="Conócenos"/></li>  
+                                <li><h:commandLink action="apadrina.xhtml" value="Apadrina"/></li>   
+                                <li><h:commandLink action="enviar.xhtml" value="Enviar"/></li>   
+                                <li><h:commandLink action="contacto.xhtml" value="Contacto"/></li> 
+                                <li><h:commandLink action="login.xhtml" value="Login"/></li>
+
+
+                        </ul> 
+                    </h:form>
+               </c:otherwise>
+            </c:choose>    
+        </div>
+        
+        <div>
+
+            <article class="contenido">
+                <ui:insert name="contenido">
+                    Aqui va el contenido de la página
+                </ui:insert>
+            </article>
+        </div>
+
+        
+        <div id="footer">
+            Grupo 9. SITA. Mayo 2019.
+            <div id="compartir">
+                    <a href="https://twitter.com/?lang=es"
+                        data-share="43">Twitter</a>
+                    <a href="https://www.facebook.com/"
+                        data-share="66">Facebook</a>
+                    <a href="https://www.google.es"
+                        data-share="38">Google</a>
+            </div> 
+        </div>  
+
+    </h:body>
+
+</html>

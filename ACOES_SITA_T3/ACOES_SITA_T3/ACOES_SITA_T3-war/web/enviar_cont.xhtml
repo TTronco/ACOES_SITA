@@ -1,0 +1,42 @@
+<ui:composition xmlns ="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/menu.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <ui:define name="titulo">
+        Enviar Contenedor
+    </ui:define>   
+    
+    <ui:define name="contenido">
+       
+        <br/>
+        
+        
+        <h:form>
+            <h3>¿Qué objetos están siendo enviados?</h3>
+            <h:selectOneMenu value="#{enviarBean.contenido}">
+                <f:selectItem itemValue="Libros" itemLabel="Libros"/>
+                <f:selectItem itemValue="Juguetes" itemLabel="Juguetes"/>
+                <f:selectItem itemValue="Comida" itemLabel="Comida"/>
+                <f:selectItem itemValue="Material Escolar" itemLabel="Material Escolar"/>
+            </h:selectOneMenu>
+            
+            
+            <h3>¿Cuánto o Cuántos?</h3>
+            <h:inputText value="#{enviarBean.cantidad}" required="true" requiredMessage="Debe introducir una cantidad"/>
+            <br/><br/>
+            <h:commandButton value="Enviar Contenedor" style="font-size: 100%" onclick="if(!confirm('¿Estas seguro?')) return false" action="#{enviarBean.contenedor(true)}"/>
+                
+        </h:form>
+        
+        
+        <h:form>
+            <h:graphicImage value="#{resource['contenedores.jpg']}" width="30%" style="padding-left: 30%"/>
+            <h:graphicImage value="#{resource['reciContenedores.jpg']}" width="22%"/>
+        </h:form>
+        
+    </ui:define>
+
+</ui:composition>
