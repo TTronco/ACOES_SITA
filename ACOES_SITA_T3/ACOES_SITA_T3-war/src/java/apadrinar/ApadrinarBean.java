@@ -32,16 +32,11 @@ import negocio.registro.RegistroNegocioLocal;
 @Named(value = "apadrinarB")
 @RequestScoped
 public class ApadrinarBean {
-
-    private Usuario user; //Usuario que solicita apadrinar
-    private List<Niño> ninos;    // Niño que es apadrinado.
-    private List<Apadrinar> ap_lista;    // Niño que es apadrinado.
-    private Agente ag;    // Agente que asigna al niño.
+  
     
     private String usuario;
     private String contrasenia;
     
-    private Apadrinar ap;
     private boolean check;
     
     @Inject
@@ -82,54 +77,6 @@ public class ApadrinarBean {
         this.contrasenia = contrasenia;
     }
 
-   
-    
-    /*
-    public String consultar(){
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        if(ctrl.getAgente() != null){
-            //Cogemos al agente actual de la sesión y le asignamos los niños disponibles.
-            ag = ctrl.getAgente();
-            ag.setNiñoList(ninos);
-            Niño por_apadrinar = null;
-            // Comprobamos si hay niños a la espera de ser apadrinados. Si lo hay, se coge el primero de la lista.
-            for (Niño n : ninos) {
-                if(n.getApadrinarList() != null){
-                    por_apadrinar = n;
-                    break;
-                }
-            }
-            
-            // Consultar usuarios en la base de datos, dejar para EJB.
-            if(por_apadrinar != null){
-                // Asignar niño.
-                //Creamos un usuario ficticio, ya que no podemos aún consultar la base de datos.
-                user = new Usuario("normal", "boniatos"); 
-                Date fecha = new Date();        
-                Apadrinar a1 = new Apadrinar(15.0,fecha , null, user);
-                ap_lista.add(a1);
-                user.setApadrinarList(ap_lista);
-                boolean asig = false;
-                for(Apadrinar a : user.getApadrinarList()){
-                    if(a.getNiñoCodigo() == null){
-                        a.setNiñoCodigo(por_apadrinar); 
-                        asig = true;
-                        break;
-                    }
-                }
-                if(!asig){
-                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ningún socio quiere apadrinar.","Ningún socio quiere apadrinar." )); 
-                }
-            }else{
-                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ningún niño está disponible.","Ningún niño está disponible." )); 
-        
-            }
-            
-        }
-        return null;
-    }
-    */
-   
     
     public String notificar(){
         

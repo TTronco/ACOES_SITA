@@ -139,8 +139,7 @@ public class Usuario implements Serializable {
 
    
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "usuarioNumSocio")
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioNumSocio")
     private List<Apadrinar> apadrinarList;
 
  

@@ -48,19 +48,10 @@ public class Registro{
     /**
      * Creates a new instance of Registro
      */
-    public Registro()  {
-        
-        // 1. Inicializamos a modo ficticio los usuarios que están ya creados y registrados.
-        nuevo = new Usuario();
+    public Registro()  {       
        
-        Random r = new Random(); int num = r.nextInt(100000);
-        //nuevo.setNumSocio(num);
-        
-        usuarios = new ArrayList<Usuario>(); 
-        usuarios.add(new Usuario("normal", "pw"));
-        usuarios.add(new Usuario("u1", "pw"));
-        usuarios.add(new Usuario("u2", "pw"));
-        usuarios.add(new Usuario("u3", "pw"));       
+        nuevo = new Usuario();
+               
     }
     
     

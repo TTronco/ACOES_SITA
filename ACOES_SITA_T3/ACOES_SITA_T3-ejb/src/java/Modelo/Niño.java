@@ -60,7 +60,7 @@ public class Niño implements Serializable {
     
     private String observaciones;
     
-    @OneToMany(mappedBy = "nene")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nene")
     private List<Correo> correoList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "niñoCodigo")

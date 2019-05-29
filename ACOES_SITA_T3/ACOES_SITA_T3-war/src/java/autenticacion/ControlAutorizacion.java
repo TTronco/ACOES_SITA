@@ -21,6 +21,8 @@ public class ControlAutorizacion implements Serializable {
     private Usuario usuario;
     private Agente agente;
     
+    private boolean ag;
+    
     public String getNombre(){
         if(usuario!= null){
             return usuario.getNombre();
@@ -93,9 +95,8 @@ public class ControlAutorizacion implements Serializable {
     public String getIdCentro(){
         return agente.getIdCentro();
     }
-   
     
-    private boolean ag = false;
+    
 
     public boolean isAg() {
         return ag;
@@ -122,12 +123,7 @@ public class ControlAutorizacion implements Serializable {
     }
 
    
-    public String home() {
-        // Implementar el método
-        // Devuelve la página Home dependiendo del rol del usuario
-        // Si no hay usuario debe devolver la página de login
-        // Si el usuario es el administrador debe devolver la página admin.xhtml
-        // Si el usuario es un usuario normal debe devolver la página normal.xhtml
+    public String home() {        
         
         String page = "login.xhtml";
         if(usuario != null || agente != null){

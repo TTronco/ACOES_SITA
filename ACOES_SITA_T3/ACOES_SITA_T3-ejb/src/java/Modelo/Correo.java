@@ -55,7 +55,10 @@ public class Correo implements Serializable {
         this.moderado = moderado;
         this.contenido = contenido;
     }
-
+    public Correo(String tipo, String contenido){
+        this.tipo = tipo;
+        this.contenido = contenido;
+    }
     public Correo(Integer codigo, String tipo, boolean moderado, String contenido) {
         this.codigo = codigo;
         this.tipo = tipo;

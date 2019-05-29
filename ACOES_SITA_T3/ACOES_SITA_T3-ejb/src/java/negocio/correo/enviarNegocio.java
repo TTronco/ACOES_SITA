@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Tarea 3: Aplicación Completa.
+ * @author Grupo 1:
+ *          - Tarun D. 
+            - Salvador C. F.
+            - Iman H. M.
+            - Antonio P. C.
  */
 package negocio.correo;
 
@@ -18,10 +20,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author imanb
- */
+
 @Stateless
 public class enviarNegocio implements enviarNegocioLocal {
 
@@ -44,8 +43,18 @@ public class enviarNegocio implements enviarNegocioLocal {
         c.setNene(ninio); c.setUser(u);
         Date hoy = new Date();
         c.setFecha_envio(hoy);
-               
         
+        /*
+        List<Correo> lista = u.getCorreoList();
+        lista.add(c);
+        u.setCorreoList(lista);        
+        em.merge(u);
+        
+        lista = ninio.getCorreoList();
+        lista.add(c);
+        ninio.setCorreoList(lista);        
+        em.merge(n);
+        */
         em.persist(c);
         
         
@@ -64,5 +73,10 @@ public class enviarNegocio implements enviarNegocioLocal {
             result.add(n.getCodigo() +  " " + n.getNombre());
          
         return result;
+    }
+    
+    @Override
+    public void enviarContenedor(Correo c){
+        em.persist(c);
     }
 }

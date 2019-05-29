@@ -34,13 +34,14 @@ import negocio.correo.enviarNegocioLocal;
 public class EnviarBean implements Serializable {
 
     private Usuario user;
-    private Agente ag;
     
     private String usuario;
-    private String nin;
+    
     private String correo;
     
     private String selectedItem;
+    private String contenido;
+    private String cantidad;
     
     @Inject 
     private ControlAutorizacion ctrl;
@@ -64,13 +65,7 @@ public class EnviarBean implements Serializable {
         this.usuario = usuario;
     }
     
-    public String getNino(){
-        return nin;
-    }
     
-    public void setNino(String nino){
-        this.nin = nino;
-    }
     
     public String getCorreo(){
         return correo;
@@ -96,7 +91,23 @@ public class EnviarBean implements Serializable {
         this.selectedItem = selectedItem;
     }    
 
-   
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
     
     
     public List<String> lista_ninos(){
@@ -106,7 +117,7 @@ public class EnviarBean implements Serializable {
     public String guardar(){
         FacesMessage fm = null;
         FacesContext ctx = FacesContext.getCurrentInstance();
-        System.out.println(correo);
+    
         Correo c = new Correo("Carta", false, correo);
         Usuario u  = ctrl.getUsuario();
         
@@ -123,42 +134,31 @@ public class EnviarBean implements Serializable {
         }
         
         return "graciasEnviarCarta.xhtml"; 
-        /*
-        boolean ok = false;
-        for(Niño n : ninos){
-            if (nin.equals(n.getNombre())) {
-                ok = true;
-                break;
-            }
-        }
+                
         
-     //   if(usuario.equals(ctrl.getUsuario().getUsuario())){
-        if(ok){*/
-        
-        /*
-            user = ctrl.getUsuario();
-            
-            Correo c = new Correo("",false,correo);
-            
-            if(user.getCorreoList() == null){
-                List<Correo> cor = new ArrayList<>();
-                cor.add(c);
-                user.setCorreoList(cor);
-            }else{
-                user.getCorreoList().add(c);
-            }
-            
-             return "graciasEnviarCarta.xhtml";           
-        }else{
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al enviar la carta. Inténtelo de nuevo","Error al enviar la carta. Inténtelo de nuevo"));
-        }
-        
-        return null;
-        */
     }
     
     public String contenedor(boolean aceptar){
         if (aceptar){
+            FacesMessage fm = null;
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            try{
+                int cant = Integer.parseInt(cantidad); 
+                if(cant == 0){
+                    fm = new FacesMessage("Introduzca un número mayor que cero.");
+                    ctx.addMessage(cantidad, fm);
+                    return null;
+                }
+                Correo c = new Correo("Contenedor", "Cantidad: " + cant + " Contenido: " + contenido);
+                Date d = new Date();
+                c.setFecha_envio(d);
+                
+                negocio.enviarContenedor(c);
+            }catch(NumberFormatException e){
+                fm = new FacesMessage("Introduzca un número válido en cantidad por favor.");
+                ctx.addMessage(cantidad, fm);
+                return null;
+            }
             return "index.xhtml";
         }else{
             return null;
