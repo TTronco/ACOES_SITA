@@ -282,3 +282,14 @@ body{
     width: 20%;
     padding-left: 50%;
 }
+
+#adm_nino{
+    padding-top: 9%;
+    text-align: center;    
+    font-family: arial, verdana;
+    font-size: 20px;
+}
+
+#addkid{
+    padding-top: 5%;
+}

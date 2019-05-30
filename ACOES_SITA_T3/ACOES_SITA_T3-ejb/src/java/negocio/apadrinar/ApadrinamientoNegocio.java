@@ -28,7 +28,7 @@ public class ApadrinamientoNegocio implements ApadrinamientoNegocioLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    @PersistenceContext
+    @PersistenceContext(unitName = "T3")
     EntityManager em;
     
     @Override

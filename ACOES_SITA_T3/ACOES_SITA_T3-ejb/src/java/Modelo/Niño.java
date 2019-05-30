@@ -18,6 +18,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -25,7 +26,10 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@NamedQuery(name = "findKidName", query="SELECT upper(n.nombre) FROM Niño n ")
+@NamedQueries({
+@NamedQuery(name = "findKidName", query="SELECT upper(n.nombre) FROM Niño n "),
+@NamedQuery(name = "findKid", query="SELECT n FROM Niño n ") 
+})
 public class Niño implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,9 +39,8 @@ public class Niño implements Serializable {
     
     private String nombre;
     
-    private String apellidos;
-    
-    private String apellido2;
+    private String apellidos;  
+
    
     private String estado;
    
@@ -71,10 +74,9 @@ public class Niño implements Serializable {
     public Niño() {
     }
 
-    public Niño(String nombre, String apellidos, String apellido2, List<Apadrinar> apadrinarList) {
+    public Niño(String nombre, String apellidos, List<Apadrinar> apadrinarList) {
         this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.apellido2 = apellido2;
+        this.apellidos = apellidos;        
         this.apadrinarList = apadrinarList;
     }
 
@@ -111,14 +113,7 @@ public class Niño implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public String getApellido2() {
-        return apellido2;
-    }
-
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
-    }
-
+   
     public String getEstado() {
         return estado;
     }
